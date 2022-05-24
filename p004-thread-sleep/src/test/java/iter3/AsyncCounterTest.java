@@ -18,7 +18,7 @@ public class AsyncCounterTest implements AsyncCounter.Listener {
     semaphore.release();
   }
 
-  @Test
+  @Test(timeOut = 100)
   public void test() throws InterruptedException {
     var startTime = System.currentTimeMillis();
     var counter = new AsyncCounter(this);
