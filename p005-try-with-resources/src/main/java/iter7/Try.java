@@ -3,14 +3,14 @@
  *
  * Reprodução parcial ou total proibida.
  */
-package iter6;
+package iter7;
 
 import java.io.IOException;
 import shared.Close;
 import shared.Resource;
 
-public class TrySuppressed {
-  public static void main(String[] args) throws IOException {
+public class Try {
+  public static void main(String[] args) {
     Throwable rethrow = null;
 
     Resource a = null;
@@ -18,10 +18,10 @@ public class TrySuppressed {
 
     try {
       a = Resource.create("A");
-      b = Resource.throwOnClose("B");
+      b = Resource.create("B");
 
-      a.throwOnWrite("Try statement (suppressed in action)");
-      b.write("Try statement (suppressed in action)");
+      a.write("Try statement (iteration 7)");
+      b.write("Try statement (iteration 7)");
     } catch (Throwable e) {
       rethrow = e;
     } finally {
@@ -29,12 +29,16 @@ public class TrySuppressed {
       rethrow = Close.ifPossible(rethrow, a);
     }
 
-    if (rethrow != null) {
-      System.err.println("The program failed: " + rethrow.getMessage());
+    if (rethrow instanceof RuntimeException re) {
+      throw re;
+    }
 
-      for (Throwable s : rethrow.getSuppressed()) {
-        System.err.println("\tsuppressed: " + s.getMessage());
-      }
+    if (rethrow instanceof Error err) {
+      throw err;
+    }
+
+    if (rethrow instanceof IOException ioe) {
+      System.err.println("The program failed: " + ioe.getMessage());
 
       return; // explicitly stop execution
     }
