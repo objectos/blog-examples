@@ -6,14 +6,13 @@
 package iter2;
 
 import java.io.IOException;
-import shared.SysOut;
+import shared.Resource;
 
 public class TryWithResources {
   public static void main(String[] args) throws IOException {
-    try (var a = SysOut.create("A"); var b = SysOut.create("B")) {
-      a.println("Try-with-resources statement (iteration 2)");
-
-      b.println("Try-with-resources statement (iteration 2)");
+    try (var a = Resource.create("A"); var b = Resource.create("B")) {
+      a.write("Try-with-resources statement (iteration 2)");
+      b.write("Try-with-resources statement (iteration 2)");
     }
   }
 }

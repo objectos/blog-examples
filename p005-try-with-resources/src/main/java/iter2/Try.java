@@ -6,22 +6,22 @@
 package iter2;
 
 import java.io.IOException;
-import shared.SysOut;
+import shared.Resource;
 
 public class Try {
+  // Warning: this code is problematic
+  // It is written this way or educational purposes
+  // Please avoid code like this in production
   public static void main(String[] args) throws IOException {
-    var a = SysOut.create("A");
-
-    var b = SysOut.create("B");
+    var a = Resource.create("A");
+    var b = Resource.create("B");
 
     try {
-      a.println("Try statement (iteration 2)");
-
-      b.println("Try statement (iteration 2)");
+      a.write("Try statement (iteration 2)");
+      b.write("Try statement (iteration 2)");
     } finally {
-      b.close();
-
       a.close();
+      b.close();
     }
   }
 }

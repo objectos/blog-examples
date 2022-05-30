@@ -3,7 +3,7 @@
  *
  * Reprodução parcial ou total proibida.
  */
-package iter4;
+package iter5;
 
 import java.io.IOException;
 import shared.Resource;
@@ -13,15 +13,25 @@ public class Try {
   // It is written this way or educational purposes
   // Please avoid code like this in production
   public static void main(String[] args) throws IOException {
-    var a = Resource.create("A");
-    var b = Resource.throwOnClose("B");
+    Resource a = null;
+    Resource b = null;
 
     try {
-      a.write("Try statement (iteration 4)");
-      b.write("Try statement (iteration 4)");
+      a = Resource.create("A");
+      a.throwOnWrite("Try statement (iteration 5)");
+
+      b = Resource.create("B");
+      b.write("Try statement (iteration 5)");
+    } catch (IOException e) {
+      System.err.println("The program failed: " + e.getMessage());
+
+      return; // explicitly stop execution
     } finally {
+      // do not do this!!
       b.close();
       a.close();
     }
+
+    System.out.println("More instructions...");
   }
 }

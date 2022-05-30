@@ -8,25 +8,24 @@ package shared;
 import java.io.Closeable;
 import java.io.IOException;
 
-public class SysOut implements Closeable {
-
+public class Resource implements Closeable {
   final String name;
 
-  SysOut(String name) {
+  Resource(String name) {
     this.name = name;
 
     print0("created");
   }
 
-  public static SysOut create(String name) throws IOException {
-    return new SysOut(name);
+  public static Resource create(String name) throws IOException {
+    return new Resource(name);
   }
 
-  public static SysOut throwOnClose(String name) throws IOException {
+  public static Resource throwOnClose(String name) throws IOException {
     return new ThrowOnClose(name);
   }
 
-  public static SysOut throwOnCreate(String name) throws IOException {
+  public static Resource throwOnCreate(String name) throws IOException {
     throw new IOException("Failed to create: " + name);
   }
 
@@ -35,7 +34,11 @@ public class SysOut implements Closeable {
     print0("closed");
   }
 
-  public void println(String s) {
+  public void throwOnWrite(String s) throws IOException {
+    throw new IOException("Failed to write: " + name);
+  }
+
+  public void write(String s) throws IOException {
     print0(s);
   }
 
@@ -43,7 +46,7 @@ public class SysOut implements Closeable {
     System.out.println(name + ": " + string);
   }
 
-  private static class ThrowOnClose extends SysOut {
+  private static class ThrowOnClose extends Resource {
     ThrowOnClose(String name) {
       super(name);
     }
@@ -55,5 +58,4 @@ public class SysOut implements Closeable {
       throw new IOException("Failed to close: " + name);
     }
   }
-
 }

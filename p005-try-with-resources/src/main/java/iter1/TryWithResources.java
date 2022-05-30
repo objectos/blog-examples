@@ -6,12 +6,12 @@
 package iter1;
 
 import java.io.IOException;
-import shared.SysOut;
+import shared.Resource;
 
 public class TryWithResources {
   public static void main(String[] args) throws IOException {
-    try (var out = SysOut.create("TWR")) {
-      out.println("Try-with-resources statement (iteration 1)");
+    try (var out = Resource.create("TWR")) {
+      out.write("Try-with-resources statement (iteration 1)");
     }
   }
 }
