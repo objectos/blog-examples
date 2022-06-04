@@ -37,7 +37,7 @@ public class Example {
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
-        say("Got interrupted...");
+        say("Got interrupted. Cleaning up...");
 
         return;
       }
