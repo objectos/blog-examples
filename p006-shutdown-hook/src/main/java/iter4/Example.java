@@ -31,9 +31,11 @@ public class Example {
   private static void countdown() {
     say("Hello");
 
-    say("3 second countdown!");
+    say("3 seconds countdown!");
 
     for (int i = 3; i > 0; i--) {
+      say(Integer.toString(i));
+
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
@@ -41,8 +43,6 @@ public class Example {
 
         return;
       }
-
-      say(Integer.toString(i));
     }
 
     say("Bye");
@@ -51,12 +51,16 @@ public class Example {
   private static void hook() {
     say("Hello");
 
-    cntr.interrupt();
+    if (cntr != null && cntr.isAlive()) {
+      say("I will interrupt cntr");
 
-    while (cntr.isAlive()) {
-      say("cntr is alive");
+      cntr.interrupt();
 
-      Thread.onSpinWait();
+      while (cntr.isAlive()) {
+        say("cntr is alive");
+
+        Thread.onSpinWait();
+      }
     }
 
     say("Bye");
