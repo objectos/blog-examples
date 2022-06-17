@@ -27,6 +27,7 @@
 		<module>p004-thread-sleep</module>
 		<module>p005-try-with-resources</module>
 		<module>p006-shutdown-hook</module>
+		<module>p008-array-backed-list</module>
 	</modules>
 
 	<dependencyManagement>
