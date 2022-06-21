@@ -3,11 +3,13 @@
  *
  * Reprodução parcial ou total proibida.
  */
-package iter1;
+package iter2;
 
 import java.util.Arrays;
 
 public class GrowableList<E> {
+  private static final int SOFT_MAX_ARRAY_LENGTH = Integer.MAX_VALUE - 8;
+
   private static final Object[] NO_DATA = new Object[0];
 
   private Object[] data = NO_DATA;
@@ -27,7 +29,21 @@ public class GrowableList<E> {
 
     int newLength = data.length + halfLength;
 
-    data = Arrays.copyOf(data, newLength);
+    if (0 < newLength && newLength <= SOFT_MAX_ARRAY_LENGTH) {
+      grow(newLength);
+
+      return append(e);
+    }
+
+    int minLength = data.length + 1;
+
+    if (minLength < 0) {
+      throw new OutOfMemoryError();
+    } else if (minLength <= SOFT_MAX_ARRAY_LENGTH) {
+      grow(SOFT_MAX_ARRAY_LENGTH);
+    } else {
+      grow(minLength);
+    }
 
     return append(e);
   }
@@ -40,5 +56,9 @@ public class GrowableList<E> {
     data[size++] = e;
 
     return true;
+  }
+
+  private void grow(int newLength) {
+    data = Arrays.copyOf(data, newLength);
   }
 }
