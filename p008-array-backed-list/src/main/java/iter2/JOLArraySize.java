@@ -3,7 +3,7 @@
  *
  * Reprodução parcial ou total proibida.
  */
-package iter1;
+package iter2;
 
 import static java.lang.System.out;
 

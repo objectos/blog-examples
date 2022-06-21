@@ -8,25 +8,24 @@ package iter1;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+import java.util.UUID;
 import org.testng.annotations.Test;
 
 public class GrowableListTest {
-
   @Test
-  public void add() {
-    var l = new GrowableList<String>();
+  public void test() {
+    var list = new GrowableList<>();
 
-    assertTrue(l.add("A"));
-    assertTrue(l.add("B"));
-    assertTrue(l.add("C"));
-    assertTrue(l.add("D"));
-    assertTrue(l.add("E"));
+    var arr = new Object[100_000];
 
-    assertEquals(l.toArray(), arr("A", "B", "C", "D", "E"));
+    for (int i = 0; i < arr.length; i++) {
+      var uuid = UUID.randomUUID();
+
+      assertTrue(list.add(uuid));
+
+      arr[i] = uuid;
+    }
+
+    assertEquals(list.toArray(), arr);
   }
-
-  private Object[] arr(Object... a) {
-    return a;
-  }
-
 }

@@ -5,27 +5,14 @@
  */
 package iter1;
 
-import java.util.Arrays;
-import shared.AlwaysThrowList;
+public class GrowableList<E> {
+  private Object[] data;
 
-public class GrowableList<E> extends AlwaysThrowList<E> {
-  protected Object[] data = initData();
-
-  protected int size;
-
-  @Override
   public boolean add(E e) {
-    data[size++] = e;
-
-    return true;
+    throw new UnsupportedOperationException("Implement me");
   }
 
-  @Override
   public Object[] toArray() {
-    return Arrays.copyOf(data, size);
-  }
-
-  protected Object[] initData() {
-    return new Object[5];
+    throw new UnsupportedOperationException("Implement me");
   }
 }

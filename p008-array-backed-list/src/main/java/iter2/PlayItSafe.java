@@ -3,11 +3,11 @@
  *
  * Reprodução parcial ou total proibida.
  */
-package iter1;
+package iter2;
 
-public class VMLimit {
+public class PlayItSafe {
   public static void main(String[] args) {
-    var abc = new String[Integer.MAX_VALUE];
+    var abc = new String[Integer.MAX_VALUE - 10];
 
     System.out.format("Actual array length is %,d%n", abc.length);
 
@@ -16,7 +16,6 @@ public class VMLimit {
     abc[i++] = "A";
     abc[i++] = "B";
     abc[i++] = "C";
-    abc[i++] = "D";
 
     System.out.println("Bye");
   }
