@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class GrowableListTest {
   @Test
   public void test() {
-    var list = new GrowableList<>();
+    var list = new GrowableList<UUID>();
 
     var arr = new Object[100_000];
 
