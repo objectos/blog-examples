@@ -29,21 +29,11 @@ public class GrowableList<E> {
 
     int newLength = data.length + halfLength;
 
-    if (0 < newLength && newLength <= SOFT_MAX_ARRAY_LENGTH) {
-      grow(newLength);
-
-      return append(e);
+    if (newLength < 0) {
+      newLength = SOFT_MAX_ARRAY_LENGTH;
     }
 
-    int minLength = data.length + 1;
-
-    if (minLength < 0) {
-      throw new OutOfMemoryError();
-    } else if (minLength <= SOFT_MAX_ARRAY_LENGTH) {
-      grow(SOFT_MAX_ARRAY_LENGTH);
-    } else {
-      grow(minLength);
-    }
+    data = Arrays.copyOf(data, newLength);
 
     return append(e);
   }
@@ -56,9 +46,5 @@ public class GrowableList<E> {
     data[size++] = e;
 
     return true;
-  }
-
-  private void grow(int newLength) {
-    data = Arrays.copyOf(data, newLength);
   }
 }
