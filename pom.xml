@@ -21,6 +21,8 @@
 	<properties>
 		<maven.compiler.source>18</maven.compiler.source>
 		<maven.compiler.target>18</maven.compiler.target>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<modules>
@@ -28,6 +30,8 @@
 		<module>p005-try-with-resources</module>
 		<module>p006-shutdown-hook</module>
 		<module>p008-array-backed-list</module>
+		<module>p009-class-circularity-error</module>
+		<module>p009-cce</module>
 	</modules>
 
 	<dependencyManagement>
