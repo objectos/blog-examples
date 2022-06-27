@@ -5,18 +5,14 @@
  */
 package cce;
 
-import java.lang.invoke.MethodHandles;
-
 public class WillItThrow {
   public static void main(String[] args) throws Exception {
-    var lookup = MethodHandles.lookup();
+    var lookup = new LookupWrapper();
 
-    System.out.println("Will create ClsCirErr02");
+    System.out.println("new ClsCirErr02()");
+    lookup.newInstance(Edit.CLASS_02_CIRCULAR);
 
-    DynClass.defineAndCreate(lookup, Data.MOD_CLASS_02);
-
-    System.out.println("Will create ClsCirErr03");
-
-    DynClass.defineAndCreate(lookup, Data.CLASS_03);
+    System.out.println("new ClsCirErr03()");
+    lookup.newInstance(Data.CLASS_03);
   }
 }
