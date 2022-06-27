@@ -12,6 +12,7 @@ public class TryWithCustomClassLoader {
     ourLoader.put("cce.ClsCircErr02", Edit.CLASS_02_CIRCULAR);
     ourLoader.put("cce.ClsCircErr03", Data.CLASS_03);
 
-    ourLoader.loadAndCreate("cce.ClsCircErr03");
+    System.out.println("new ClsCirErr03()");
+    ourLoader.newInstance("cce.ClsCircErr03");
   }
 }

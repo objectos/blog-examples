@@ -13,6 +13,7 @@ public class CustomClassLoaderTest {
     ourLoader.put("cce.ClsCircErr02", Data.CLASS_02);
     ourLoader.put("cce.ClsCircErr03", Data.CLASS_03);
 
-    ourLoader.loadAndCreate("cce.ClsCircErr03");
+    System.out.println("new ClsCirErr03()");
+    ourLoader.newInstance("cce.ClsCircErr03");
   }
 }
