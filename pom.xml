@@ -48,6 +48,7 @@
 		<module>p006-shutdown-hook</module>
 		<module>p008-array-backed-list</module>
 		<module>p009-class-circularity-error</module>
+		<module>p010-binary-data</module>
 	</modules>
 
 	<build>
