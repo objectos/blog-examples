@@ -18,23 +18,33 @@ package binary;
 import static org.testng.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Base64;
+import java.util.HexFormat;
+import java.util.zip.DeflaterOutputStream;
 import org.testng.annotations.Test;
 
-public class Base64Test {
+public class UncompressedTest {
   private static final String README = """
-      eAE9yzEKgDAMRmHnnuIHB7eCo3cQXLxAUyNWqpEm0uvrovP7HmUhDH3TYroLjNVwFdk5mnPzlhQ1
-      5QxiyJfpPbwb2TqFMiOtqIwYThQOC5JhLXL83rsHUlggxg==
+      626c6f6220393100\
+      3d\
+      204f757220746573742070726f6a6563740a0a5468\
+      69732077696c6c206265206f7572207465737420626c6f622e0a4c657427\
+      73207365652069662077652063616e20726561642069742066726f6d206f\
+      757220746573742e0a\
       """;
 
   @Test
   public void readme() throws IOException {
-    var decoder = Base64.getMimeDecoder();
+    var out = new ByteArrayOutputStream();
 
-    var bytes = decoder.decode(README);
+    try (var outputStream = new DeflaterOutputStream(out)) {
+      var hexFormat = HexFormat.of();
+
+      outputStream.write(hexFormat.parseHex(README));
+    }
+
+    var bytes = out.toByteArray();
 
     try (var inputStream = new ByteArrayInputStream(bytes)) {
       var reader = new BlobReader();
@@ -45,7 +55,7 @@ public class Base64Test {
         blob.text(),
 
         """
-        # Our test project
+        = Our test project
 
         This will be our test blob.
         Let's see if we can read it from our test.
@@ -53,35 +63,4 @@ public class Base64Test {
       );
     }
   }
-
-  @Test
-  public void readmeWithFile() throws IOException {
-    var decoder = Base64.getMimeDecoder();
-
-    var bytes = decoder.decode(README);
-
-    var file = File.createTempFile("blob-", ".tmp");
-
-    file.deleteOnExit();
-
-    try (var out = new FileOutputStream(file)) {
-      out.write(bytes);
-    }
-
-    var reader = new BlobReader();
-
-    var blob = reader.readFile(file);
-
-    assertEquals(
-      blob.text(),
-
-      """
-      # Our test project
-
-      This will be our test blob.
-      Let's see if we can read it from our test.
-      """
-    );
-  }
-
 }

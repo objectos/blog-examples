@@ -25,8 +25,7 @@ import java.util.HexFormat;
 import org.testng.annotations.Test;
 
 public class BlobReaderTest {
-  private static final String README = //
-      """
+  private static final String README = """
       78013dcb310a80300c4661e79ee20707b782a377105cbc40532356aa9126\
       d2ebeba2f3fb1e65210c7dd362ba0b8cd57015d9399a73f3961435e50c62\
       c897e93dbc1bd93a853223ada88c184e140e0b92612d72fcdebb07525820\
