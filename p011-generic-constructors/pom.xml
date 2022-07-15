@@ -19,22 +19,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>br.com.objectos.www</groupId>
 		<artifactId>blog-examples</artifactId>
 		<version>0.3.0-SNAPSHOT</version>
 	</parent>
-	
-	<artifactId>p010-binary-data</artifactId>
+
+	<artifactId>p011-generic-constructors</artifactId>
 
 	<name>${project.groupId}:${project.artifactId}</name>
-	
+
 	<dependencies>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>code</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.javaparser</groupId>
+			<artifactId>javaparser-symbol-solver-core</artifactId>
+			<version>3.24.2</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 </project>
