@@ -13,22 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter2;
+package iter1;
 
+import java.io.Closeable;
+import java.io.Flushable;
+import java.io.IOException;
 import java.util.Objects;
 
-public class CharAt implements Comparable<CharAt> {
-  private final CharSequence cs;
+public class FlushThenClose<T extends Flushable & Closeable> {
+  private final T value;
 
-  public <T extends CharSequence & Comparable<T>> CharAt(T cs) {
-    this.cs = Objects.requireNonNull(cs);
+  public FlushThenClose(T value) {
+    this.value = Objects.requireNonNull(value);
   }
 
-  public char charAt(int index) { return cs.charAt(index); }
-
-  @Override
-  public int compareTo(CharAt o) { return CharSequence.compare(cs, o.cs); }
-
-  @Override
-  public String toString() { return cs.toString(); }
+  public void execute() throws IOException {
+    // For Eclipse JDT:
+    // try (var closeable = (Closeable) value) {
+    try (value) {
+      value.flush();
+    }
+  }
 }

@@ -13,25 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter2;
+package shared;
 
-import static org.testng.Assert.assertEquals;
-
+import java.io.Closeable;
+import java.io.Flushable;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import org.testng.annotations.Test;
+import java.util.List;
 
-public class CharAtTest {
-  @Test
-  public void sort() {
-    var list = new ArrayList<CharAt>();
+public class CanCloseAndFlush implements Closeable, Flushable {
+  public enum Operation {
+    CLOSE,
+    FLUSH;
+  }
 
-    list.add(new CharAt(new StringBuilder("c")));
-    list.add(new CharAt(new StringBuffer("b")));
-    list.add(new CharAt("a"));
+  public final List<Operation> operations = new ArrayList<>();
 
-    Collections.sort(list);
+  @Override
+  public void close() throws IOException {
+    operations.add(Operation.CLOSE);
+  }
 
-    assertEquals(list.toString(), "[a, b, c]");
+  @Override
+  public void flush() throws IOException {
+    operations.add(Operation.FLUSH);
   }
 }

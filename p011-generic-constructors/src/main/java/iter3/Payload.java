@@ -13,25 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter1;
+package iter3;
 
-import static org.testng.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import org.testng.annotations.Test;
-
-public class CharAtTest {
-  @Test
-  public void sort() {
-    var list = new ArrayList<CharAt<String>>();
-
-    list.add(new CharAt<>("c"));
-    list.add(new CharAt<>("b"));
-    list.add(new CharAt<>("a"));
-
-    Collections.sort(list);
-
-    assertEquals(list.toString(), "[a, b, c]");
-  }
-}
+public record Payload(String data) {}

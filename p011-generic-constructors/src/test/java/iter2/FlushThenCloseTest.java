@@ -13,10 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter1;
+package iter2;
 
-public class Box<T> {
-  final T value;
+import static org.testng.Assert.assertEquals;
 
-  public Box(T value) { this.value = value; }
+import java.io.IOException;
+import java.util.List;
+import org.testng.annotations.Test;
+import shared.CanCloseAndFlush;
+import shared.CanCloseAndFlush.Operation;
+
+public class FlushThenCloseTest {
+  @Test
+  public void execute() throws IOException {
+    var subject = new CanCloseAndFlush();
+
+    var wrapper = new FlushThenClose(subject);
+
+    wrapper.execute();
+
+    assertEquals(
+      subject.operations,
+      List.of(Operation.FLUSH, Operation.CLOSE)
+    );
+  }
 }

@@ -13,23 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter1;
+package iter4;
 
-import java.util.Objects;
+import java.util.function.Function;
 
-public class CharAt<T extends CharSequence & Comparable<T>>
-    implements Comparable<CharAt<T>> {
-  private final T cs;
-
-  public CharAt(T cs) {
-    this.cs = Objects.requireNonNull(cs);
+record Payload(String data) {
+  public <T> Payload(Function<T, String> formatter, T item) {
+    this(formatter.apply(item));
   }
 
-  public char charAt(int index) { return cs.charAt(index); }
-
-  @Override
-  public int compareTo(CharAt<T> o) { return cs.compareTo(o.cs); }
-
-  @Override
-  public String toString() { return cs.toString(); }
+  public Payload(LogConverter converter, Log item) {
+    <Log> this(converter::convert, item);
+  }
 }
