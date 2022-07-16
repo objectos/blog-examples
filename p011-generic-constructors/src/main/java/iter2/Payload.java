@@ -13,6 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter3;
+package iter2;
 
-public record Payload(String data) {}
+import java.util.function.Function;
+
+public record Payload(String data) {
+  public <T> Payload(Function<T, String> converter, T item) {
+    this(converter.apply(item));
+  }
+
+  static final Function<Log, String> LOG_CONVERTER
+      = LogConverter.INSTANCE::convert;
+
+  public Payload(Log log) {
+    <Log> this(LOG_CONVERTER, log);
+  }
+}

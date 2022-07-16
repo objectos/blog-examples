@@ -15,23 +15,7 @@
  */
 package iter2;
 
-import java.io.Closeable;
-import java.io.Flushable;
-import java.io.IOException;
-import java.util.Objects;
+import java.util.logging.Level;
 
-public class FlushThenClose {
-  private final Object value;
-
-  public <T extends Flushable & Closeable> FlushThenClose(T value) {
-    this.value = Objects.requireNonNull(value);
-  }
-
-  public void execute() throws IOException {
-    try (var closeable = (Closeable) value) {
-      var asFlushable = (Flushable) value;
-
-      asFlushable.flush();
-    }
-  }
+public record Log(long millis, Level level, String msg) {
 }

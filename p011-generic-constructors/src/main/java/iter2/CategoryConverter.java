@@ -13,25 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter1;
+package iter2;
 
-import java.io.Closeable;
-import java.io.Flushable;
-import java.io.IOException;
-import java.util.Objects;
-
-public class FlushThenClose<T extends Flushable & Closeable> {
-  private final T value;
-
-  public FlushThenClose(T value) {
-    this.value = Objects.requireNonNull(value);
-  }
-
-  public void execute() throws IOException {
-    // For Eclipse JDT:
-    // try (var closeable = (Closeable) value) {
-    try (value) {
-      value.flush();
+public class CategoryConverter {
+  public String convert(Category cat) {
+    return """
+    {
+      "id": %d,
+      "name": "%s"
     }
+    """.formatted(cat.id(), cat.name());
   }
 }

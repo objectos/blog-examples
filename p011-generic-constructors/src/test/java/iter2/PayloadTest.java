@@ -17,24 +17,36 @@ package iter2;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.IOException;
-import java.util.List;
+import java.util.logging.Level;
 import org.testng.annotations.Test;
-import shared.CanCloseAndFlush;
-import shared.CanCloseAndFlush.Operation;
 
-public class FlushThenCloseTest {
+public class PayloadTest {
   @Test
-  public void execute() throws IOException {
-    var subject = new CanCloseAndFlush();
+  public void category() {
+    var converter = new CategoryConverter();
+    var log = new Category(987, "A category");
+    var p = new Payload(converter::convert, log);
 
-    var wrapper = new FlushThenClose(subject);
+    assertEquals(p.data(), """
+    {
+      "id": 987,
+      "name": "A category"
+    }
+    """);
+  }
 
-    wrapper.execute();
+  @Test
+  public void log() {
+    var converter = new LogConverter();
+    var log = new Log(12345L, Level.INFO, "A message");
+    var p = new Payload(converter::convert, log);
 
-    assertEquals(
-      subject.operations,
-      List.of(Operation.FLUSH, Operation.CLOSE)
-    );
+    assertEquals(p.data(), """
+    {
+      "millis": 12345,
+      "level": "INFO",
+      "msg": "A message"
+    }
+    """);
   }
 }

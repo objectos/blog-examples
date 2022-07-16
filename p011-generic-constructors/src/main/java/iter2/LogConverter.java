@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter4;
+package iter2;
 
-import java.util.function.Function;
+public class LogConverter {
+  static final LogConverter INSTANCE = new LogConverter();
 
-record Payload(String data) {
-  public <T> Payload(Function<T, String> formatter, T item) {
-    this(formatter.apply(item));
-  }
-
-  public Payload(LogConverter converter, Log item) {
-    <Log> this(converter::convert, item);
+  public String convert(Log log) {
+    return """
+    {
+      "millis": %d,
+      "level": "%s",
+      "msg": "%s"
+    }
+    """.formatted(log.millis(), log.level(), log.msg());
   }
 }
