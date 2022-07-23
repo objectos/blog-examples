@@ -18,36 +18,9 @@ package post;
 import java.util.ArrayList;
 
 public class Listing02 {
+  @SuppressWarnings("unused")
   public static void main(String[] args) {
-    var arrayLists = new ArrayList<ArrayList<Integer>>();
-    arrayLists.add(New.arrayList(1, 2, 3));
-    arrayLists.add(New.arrayList(4, 5, 6));
-
-    printAll(arrayLists);
-  }
-
-  private static void printAll(ArrayList<ArrayList<Integer>> all) {
-    for (int i = 0, size = all.size(); i < size; i++) {
-      ArrayList<Integer> list = all.get(i);
-
-      printOne(list);
-    }
-
-    System.out.println();
-  }
-
-  private static void printOne(ArrayList<Integer> one) {
-    for (int i = 0, size = one.size(); i < size; i++) {
-      Integer value = one.get(i);
-
-      int intValue = value.intValue();
-
-      printOneInt(intValue);
-    }
-  }
-
-  private static void printOneInt(int value) {
-    System.out.print(value);
-    System.out.print(' ');
+    ArrayList<ArrayList<Integer>> temp1 = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> temp2 = temp1;
   }
 }

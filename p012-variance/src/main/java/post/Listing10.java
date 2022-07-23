@@ -16,23 +16,34 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Listing04 {
+public class Listing10 {
   public static void main(String[] args) {
-    var temp1 = new ArrayList<ArrayList<Integer>>();
+    var lists = new ArrayList<List<Number>>();
 
-    // 1
-    temp1.add(New.arrayList(1, 2, 3));
-    temp1.add(New.arrayList(4, 5, 6));
-    temp1.add(New.arrayList(7, 8, 9));
+    addNewArrayList(lists, 1, 2, 3);
+    addNewArrayList(lists, 4D, 5D, 6D);
+    addNewArrayList(lists, 7L, 8L, 9L);
 
-    consume(temp1);
+    printAll(lists);
   }
 
-  // 2
-  private static void consume(ArrayList<ArrayList<Integer>> temp2) {
-    for (int i = 0, size = temp2.size(); i < size; i++) {
-      ArrayList<Integer> list = temp2.get(i);
+  @SafeVarargs
+  private static <E extends Number> void addNewArrayList(
+      List<? super List<E>> lists, E... values) {
+    var list = new ArrayList<E>();
+
+    for (var value : values) {
+      list.add(value);
+    }
+
+    lists.add(list);
+  }
+
+  private static void printAll(List<? extends List<? extends Number>> all) {
+    for (int i = 0, size = all.size(); i < size; i++) {
+      List<? extends Number> list = all.get(i);
 
       printOne(list);
     }
@@ -40,10 +51,9 @@ public class Listing04 {
     System.out.println();
   }
 
-  // 3
-  private static void printOne(ArrayList<Integer> one) {
+  private static void printOne(List<? extends Number> one) {
     for (int i = 0, size = one.size(); i < size; i++) {
-      Integer value = one.get(i);
+      Number value = one.get(i);
 
       int intValue = value.intValue();
 
@@ -51,9 +61,8 @@ public class Listing04 {
     }
   }
 
-  // 4
   private static void printOneInt(int value) {
     System.out.print(value);
-    System.out.print(" ");
+    System.out.print(' ');
   }
 }

@@ -18,20 +18,13 @@ package post;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Listing01 {
-  @SuppressWarnings({"unchecked", "rawtypes"})
+public class TweetQuestion {
+  @SuppressWarnings("unused")
   public static void main(String[] args) {
-    var temp1 = new ArrayList<ArrayList<Integer>>();
-    temp1.add(New.arrayList(1, 2, 3));
+    ArrayList<Integer> list1 = new ArrayList<>();
+    List<Integer> list2 = list1; // no error
 
-    List temp2 = temp1;
-
-    temp2.add(New.linkedList(4, 5, 6));
-
-    var arrayList0 = temp1.get(0);
-    System.out.println(arrayList0);
-
-    var arrayList1 = temp1.get(1);
-    System.out.println(arrayList1);
+    ArrayList<ArrayList<Integer>> temp1 = new ArrayList<>();
+    // List<List<Integer>> temp2 = temp1; // error
   }
 }

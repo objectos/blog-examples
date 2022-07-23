@@ -29,10 +29,7 @@ public class Listing07 {
     printAll(lists);
   }
 
-  //private static void addNewArrayList(
-  //    List<? extends List<Integer>> lists, Integer... values) {
-  private static void addNewArrayList(
-      List<? super List<Integer>> lists, Integer... values) {
+  private static void addNewArrayList(ArrayList<List<Integer>> lists, Integer... values) {
     var list = new ArrayList<Integer>();
 
     for (var value : values) {

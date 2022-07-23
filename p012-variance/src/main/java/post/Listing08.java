@@ -20,19 +20,17 @@ import java.util.List;
 
 public class Listing08 {
   public static void main(String[] args) {
-    var lists = new ArrayList<List<Number>>();
+    var lists = new ArrayList<List<Integer>>();
 
     addNewArrayList(lists, 1, 2, 3);
-    addNewArrayList(lists, 4D, 5D, 6D);
-    addNewArrayList(lists, 7L, 8L, 9L);
+    addNewArrayList(lists, 4, 5, 6);
+    addNewArrayList(lists, 7, 8, 9);
 
     printAll(lists);
   }
 
-  @SafeVarargs
-  private static <E extends Number> void addNewArrayList(
-      List<? super List<E>> lists, E... values) {
-    var list = new ArrayList<E>();
+  private static void addNewArrayList(List<List<Integer>> lists, Integer... values) {
+    var list = new ArrayList<Integer>();
 
     for (var value : values) {
       list.add(value);

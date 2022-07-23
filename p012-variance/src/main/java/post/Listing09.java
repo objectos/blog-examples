@@ -16,29 +16,24 @@
 package post;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class Listing09 {
-  @SuppressWarnings("serial")
-  private static class ThisArrayList<E> extends ArrayList<E> {
-  }
-
   public static void main(String[] args) {
-    var lists = new ArrayList<List<Number>>();
+    var lists = new ArrayList<List<Integer>>();
 
-    addNew(lists, ArrayList::new, 1, 2, 3);
-    addNew(lists, LinkedList::new, 4D, 5D, 6D);
-    addNew(lists, ThisArrayList::new, 7L, 8L, 9L);
+    addNewArrayList(lists, 1, 2, 3);
+    addNewArrayList(lists, 4, 5, 6);
+    addNewArrayList(lists, 7, 8, 9);
 
     printAll(lists);
   }
 
-  @SafeVarargs
-  private static <E extends Number> void addNew(
-      List<? super List<E>> lists, Supplier<List<E>> factory, E... values) {
-    var list = factory.get();
+  //private static void addNewArrayList(
+  //    List<? extends List<Integer>> lists, Integer... values) {
+  private static void addNewArrayList(
+      List<? super List<Integer>> lists, Integer... values) {
+    var list = new ArrayList<Integer>();
 
     for (var value : values) {
       list.add(value);

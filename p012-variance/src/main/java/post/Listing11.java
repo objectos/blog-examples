@@ -16,23 +16,40 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Supplier;
 
-public class Listing06 {
-  public static void main(String[] args) {
-    var temp1 = new ArrayList<ArrayList<Integer>>();
-
-    temp1.add(New.arrayList(1, 2, 3));
-    temp1.add(New.arrayList(4, 5, 6));
-    temp1.add(New.arrayList(7, 8, 9));
-
-    consume(temp1);
+public class Listing11 {
+  @SuppressWarnings("serial")
+  private static class ThisArrayList<E> extends ArrayList<E> {
   }
 
-  private static void consume(List<? extends List<? extends Number>> temp2) {
-    for (int i = 0, size = temp2.size(); i < size; i++) {
-      // 1
-      List<? extends Number> list = temp2.get(i);
+  public static void main(String[] args) {
+    var lists = new ArrayList<List<Number>>();
+
+    addNew(lists, ArrayList::new, 1, 2, 3);
+    addNew(lists, LinkedList::new, 4D, 5D, 6D);
+    addNew(lists, ThisArrayList::new, 7L, 8L, 9L);
+
+    printAll(lists);
+  }
+
+  @SafeVarargs
+  private static <E extends Number> void addNew(
+      List<? super List<E>> lists, Supplier<List<E>> factory, E... values) {
+    var list = factory.get();
+
+    for (var value : values) {
+      list.add(value);
+    }
+
+    lists.add(list);
+  }
+
+  private static void printAll(List<? extends List<? extends Number>> all) {
+    for (int i = 0, size = all.size(); i < size; i++) {
+      List<? extends Number> list = all.get(i);
 
       printOne(list);
     }
@@ -40,10 +57,8 @@ public class Listing06 {
     System.out.println();
   }
 
-  // 2
   private static void printOne(List<? extends Number> one) {
     for (int i = 0, size = one.size(); i < size; i++) {
-      // 3
       Number value = one.get(i);
 
       int intValue = value.intValue();

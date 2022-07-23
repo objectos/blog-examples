@@ -20,28 +20,19 @@ import java.util.List;
 
 public class Listing05 {
   public static void main(String[] args) {
-    var lists = new ArrayList<List<Integer>>();
+    var temp1 = new ArrayList<ArrayList<Integer>>();
 
-    addNewArrayList(lists, 1, 2, 3);
-    addNewArrayList(lists, 4, 5, 6);
-    addNewArrayList(lists, 7, 8, 9);
+    temp1.add(New.arrayList(1, 2, 3));
+    temp1.add(New.arrayList(4, 5, 6));
+    temp1.add(New.arrayList(7, 8, 9));
 
-    printAll(lists);
+    consume(temp1);
   }
 
-  private static void addNewArrayList(ArrayList<List<Integer>> lists, Integer... values) {
-    var list = new ArrayList<Integer>();
-
-    for (var value : values) {
-      list.add(value);
-    }
-
-    lists.add(list);
-  }
-
-  private static void printAll(List<? extends List<? extends Number>> all) {
-    for (int i = 0, size = all.size(); i < size; i++) {
-      List<? extends Number> list = all.get(i);
+  //private static void consume(List<List<Integer>> temp2) {
+  private static void consume(List<? extends List<Integer>> temp2) {
+    for (int i = 0, size = temp2.size(); i < size; i++) {
+      List<Integer> list = temp2.get(i);
 
       printOne(list);
     }
@@ -49,9 +40,9 @@ public class Listing05 {
     System.out.println();
   }
 
-  private static void printOne(List<? extends Number> one) {
+  private static void printOne(List<Integer> one) {
     for (int i = 0, size = one.size(); i < size; i++) {
-      Number value = one.get(i);
+      Integer value = one.get(i);
 
       int intValue = value.intValue();
 

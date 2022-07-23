@@ -16,41 +16,15 @@
 package post;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Listing03 {
   public static void main(String[] args) {
-    var lists = new ArrayList<List<Integer>>();
-    lists.add(New.arrayList(1, 2, 3));
-    lists.add(New.arrayList(4, 5, 6));
-    lists.add(New.arrayList(7, 8, 9));
+    ArrayList<ArrayList<Integer>> temp1 = new ArrayList<>();
 
-    printAll(lists);
+    consume(temp1);
   }
 
-  //private static void printAll(List<List<Integer>> all) {
-  private static void printAll(List<? extends List<Integer>> all) {
-    for (int i = 0, size = all.size(); i < size; i++) {
-      List<Integer> list = all.get(i);
+  private static void consume(ArrayList<ArrayList<Integer>> temp2) {
 
-      printOne(list);
-    }
-
-    System.out.println();
-  }
-
-  private static void printOne(List<Integer> one) {
-    for (int i = 0, size = one.size(); i < size; i++) {
-      Integer value = one.get(i);
-
-      int intValue = value.intValue();
-
-      printOneInt(intValue);
-    }
-  }
-
-  private static void printOneInt(int value) {
-    System.out.print(value);
-    System.out.print(' ');
   }
 }
