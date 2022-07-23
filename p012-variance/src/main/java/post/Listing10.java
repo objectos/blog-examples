@@ -16,48 +16,45 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Vector;
 import java.util.function.Supplier;
 
 public class Listing10 {
   public static void main(String[] args) {
-    var temp1 = new ArrayList<List<Number>>();
+    var temp1 = new ArrayList<Iterable<Number>>();
 
     add(temp1, ArrayList::new, 1, 2, 3);
     add(temp1, LinkedList::new, 4D, 5D, 6D);
-    add(temp1, Vector::new, 7L, 8L, 9L);
+    add(temp1, LinkedHashSet::new, 7L, 8L, 9L);
 
     consume(temp1);
   }
 
   @SafeVarargs
   private static <E extends Number> void add(
-      List<List<E>> temp1, Supplier<List<E>> factory, E... values) {
-    var list = factory.get();
+      List<? super Iterable<E>> temp1, Supplier<Collection<E>> factory, E... values) {
+    var coll = factory.get();
 
     for (var value : values) {
-      list.add(value);
+      coll.add(value);
     }
 
-    temp1.add(list);
+    temp1.add(coll);
   }
 
-  private static void consume(List<? extends List<? extends Number>> temp2) {
-    for (int i = 0, size = temp2.size(); i < size; i++) {
-      List<? extends Number> list = temp2.get(i);
-
-      printOne(list);
+  private static void consume(Iterable<? extends Iterable<? extends Number>> temp2) {
+    for (Iterable<? extends Number> value : temp2) {
+      printOne(value);
     }
 
     System.out.println();
   }
 
-  private static void printOne(List<? extends Number> one) {
-    for (int i = 0, size = one.size(); i < size; i++) {
-      Number value = one.get(i);
-
+  private static void printOne(Iterable<? extends Number> one) {
+    for (Number value : one) {
       int intValue = value.intValue();
 
       printOneInt(intValue);

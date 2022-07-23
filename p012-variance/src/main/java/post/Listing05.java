@@ -31,19 +31,15 @@ public class Listing05 {
 
   //private static void consume(List<List<Integer>> temp2) {
   private static void consume(List<? extends List<Integer>> temp2) {
-    for (int i = 0, size = temp2.size(); i < size; i++) {
-      List<Integer> list = temp2.get(i);
-
-      printOne(list);
+    for (List<Integer> value : temp2) {
+      printOne(value);
     }
 
     System.out.println();
   }
 
-  private static void printOne(List<Integer> one) {
-    for (int i = 0, size = one.size(); i < size; i++) {
-      Integer value = one.get(i);
-
+  private static void printOne(List<Integer> list) {
+    for (Integer value : list) {
       int intValue = value.intValue();
 
       printOneInt(intValue);

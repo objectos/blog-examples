@@ -17,29 +17,41 @@ package post;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
-public class Listing06 {
+public class Listing09a {
   public static void main(String[] args) {
     var temp1 = new ArrayList<ArrayList<Integer>>();
 
-    temp1.add(New.arrayList(1, 2, 3));
-    temp1.add(New.arrayList(4, 5, 6));
-    temp1.add(New.arrayList(7, 8, 9));
+    add(temp1, ArrayList::new, 1, 2, 3);
+    add(temp1, ArrayList::new, 4, 5, 6);
+    add(temp1, ArrayList::new, 7, 8, 9);
 
     consume(temp1);
   }
 
-  private static void consume(List<? extends List<? extends Number>> temp2) {
-    for (/*1*/ List<? extends Number> value : temp2) {
+  @SafeVarargs
+  private static <COLL extends List<E>, E extends Number> void add(
+      List<? super COLL> temp1, Supplier<COLL> factory, E... values) {
+    COLL coll = factory.get();
+
+    for (var value : values) {
+      coll.add(value);
+    }
+
+    temp1.add(coll);
+  }
+
+  private static void consume(Iterable<? extends Iterable<? extends Number>> temp2) {
+    for (Iterable<? extends Number> value : temp2) {
       printOne(value);
     }
 
     System.out.println();
   }
 
-  // 2
-  private static void printOne(List<? extends Number> one) {
-    for (/*3*/ Number value : one) {
+  private static void printOne(Iterable<? extends Number> one) {
+    for (Number value : one) {
       int intValue = value.intValue();
 
       printOneInt(intValue);

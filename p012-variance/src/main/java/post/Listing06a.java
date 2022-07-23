@@ -16,9 +16,8 @@
 package post;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Listing06 {
+public class Listing06a {
   public static void main(String[] args) {
     var temp1 = new ArrayList<ArrayList<Integer>>();
 
@@ -29,8 +28,8 @@ public class Listing06 {
     consume(temp1);
   }
 
-  private static void consume(List<? extends List<? extends Number>> temp2) {
-    for (/*1*/ List<? extends Number> value : temp2) {
+  private static void consume(Iterable<? extends Iterable<? extends Number>> temp2) {
+    for (/*1*/ Iterable<? extends Number> value : temp2) {
       printOne(value);
     }
 
@@ -38,7 +37,7 @@ public class Listing06 {
   }
 
   // 2
-  private static void printOne(List<? extends Number> one) {
+  private static void printOne(Iterable<? extends Number> one) {
     for (/*3*/ Number value : one) {
       int intValue = value.intValue();
 

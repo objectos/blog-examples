@@ -31,20 +31,16 @@ public class Listing04 {
 
   // 2
   private static void consume(ArrayList<ArrayList<Integer>> temp2) {
-    for (int i = 0, size = temp2.size(); i < size; i++) {
-      ArrayList<Integer> list = temp2.get(i);
-
-      printOne(list);
+    for (ArrayList<Integer> value : temp2) {
+      printOne(value);
     }
 
     System.out.println();
   }
 
   // 3
-  private static void printOne(ArrayList<Integer> one) {
-    for (int i = 0, size = one.size(); i < size; i++) {
-      Integer value = one.get(i);
-
+  private static void printOne(ArrayList<Integer> list) {
+    for (Integer value : list) {
       int intValue = value.intValue();
 
       printOneInt(intValue);

@@ -32,7 +32,7 @@ public class Listing09 {
 
   @SafeVarargs
   private static <LIST extends List<E>, E extends Number> void add(
-      List<LIST> temp1, Supplier<LIST> factory, E... values) {
+      List<? super LIST> temp1, Supplier<LIST> factory, E... values) {
     var list = factory.get();
 
     for (var value : values) {
@@ -42,20 +42,16 @@ public class Listing09 {
     temp1.add(list);
   }
 
-  private static void consume(List<? extends List<? extends Number>> temp2) {
-    for (int i = 0, size = temp2.size(); i < size; i++) {
-      List<? extends Number> list = temp2.get(i);
-
-      printOne(list);
+  private static void consume(Iterable<? extends Iterable<? extends Number>> temp2) {
+    for (Iterable<? extends Number> value : temp2) {
+      printOne(value);
     }
 
     System.out.println();
   }
 
-  private static void printOne(List<? extends Number> one) {
-    for (int i = 0, size = one.size(); i < size; i++) {
-      Number value = one.get(i);
-
+  private static void printOne(Iterable<? extends Number> one) {
+    for (Number value : one) {
       int intValue = value.intValue();
 
       printOneInt(intValue);
