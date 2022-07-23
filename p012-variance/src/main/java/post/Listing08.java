@@ -17,31 +17,33 @@ package post;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Listing08 {
   public static void main(String[] args) {
-    var lists = new ArrayList<List<Integer>>();
+    var temp1 = new ArrayList<ArrayList<Integer>>();
 
-    addNewArrayList(lists, 1, 2, 3);
-    addNewArrayList(lists, 4, 5, 6);
-    addNewArrayList(lists, 7, 8, 9);
+    add(temp1, ArrayList::new, 1, 2, 3);
+    add(temp1, ArrayList::new, 4, 5, 6);
+    add(temp1, ArrayList::new, 7, 8, 9);
 
-    printAll(lists);
+    consume(temp1);
   }
 
-  private static void addNewArrayList(List<List<Integer>> lists, Integer... values) {
-    var list = new ArrayList<Integer>();
+  private static <LIST extends List<Integer>> void add(
+      List<LIST> temp1, Supplier<LIST> factory, Integer... values) {
+    var list = factory.get();
 
     for (var value : values) {
       list.add(value);
     }
 
-    lists.add(list);
+    temp1.add(list);
   }
 
-  private static void printAll(List<? extends List<? extends Number>> all) {
-    for (int i = 0, size = all.size(); i < size; i++) {
-      List<? extends Number> list = all.get(i);
+  private static void consume(List<? extends List<? extends Number>> temp2) {
+    for (int i = 0, size = temp2.size(); i < size; i++) {
+      List<? extends Number> list = temp2.get(i);
 
       printOne(list);
     }

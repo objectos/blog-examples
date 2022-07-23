@@ -16,34 +16,37 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
+import java.util.function.Supplier;
 
 public class Listing10 {
   public static void main(String[] args) {
-    var lists = new ArrayList<List<Number>>();
+    var temp1 = new ArrayList<List<Number>>();
 
-    addNewArrayList(lists, 1, 2, 3);
-    addNewArrayList(lists, 4D, 5D, 6D);
-    addNewArrayList(lists, 7L, 8L, 9L);
+    add(temp1, ArrayList::new, 1, 2, 3);
+    add(temp1, LinkedList::new, 4D, 5D, 6D);
+    add(temp1, Vector::new, 7L, 8L, 9L);
 
-    printAll(lists);
+    consume(temp1);
   }
 
   @SafeVarargs
-  private static <E extends Number> void addNewArrayList(
-      List<? super List<E>> lists, E... values) {
-    var list = new ArrayList<E>();
+  private static <E extends Number> void add(
+      List<List<E>> temp1, Supplier<List<E>> factory, E... values) {
+    var list = factory.get();
 
     for (var value : values) {
       list.add(value);
     }
 
-    lists.add(list);
+    temp1.add(list);
   }
 
-  private static void printAll(List<? extends List<? extends Number>> all) {
-    for (int i = 0, size = all.size(); i < size; i++) {
-      List<? extends Number> list = all.get(i);
+  private static void consume(List<? extends List<? extends Number>> temp2) {
+    for (int i = 0, size = temp2.size(); i < size; i++) {
+      List<? extends Number> list = temp2.get(i);
 
       printOne(list);
     }
