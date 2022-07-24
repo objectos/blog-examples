@@ -16,38 +16,18 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
-public class Listing06 {
+public class Listing10b {
   public static void main(String[] args) {
-    var temp1 = new ArrayList<ArrayList<Integer>>();
+    var temp1 = new ArrayList<List<Integer>>();
 
-    temp1.add(New.arrayList(1, 2, 3));
-    temp1.add(New.arrayList(4, 5, 6));
-    temp1.add(New.arrayList(7, 8, 9));
+    Listing10.add(temp1, ArrayList::new, 1, 2, 3);
+    Listing10.add(temp1, LinkedList::new, 4, 5, 6);
+    Listing10.add(temp1, Vector::new, 7, 8, 9);
 
-    consume(temp1);
-  }
-
-  private static void consume(List<? extends List<? extends Number>> temp2) {
-    for (var value : temp2) {
-      printOne(value);
-    }
-
-    System.out.println();
-  }
-
-  // 1
-  private static void printOne(List<? extends Number> one) {
-    for (var value : one) {
-      int intValue = value.intValue();
-
-      printOneInt(intValue);
-    }
-  }
-
-  private static void printOneInt(int value) {
-    System.out.print(value);
-    System.out.print(' ');
+    Listing10.consume(temp1);
   }
 }

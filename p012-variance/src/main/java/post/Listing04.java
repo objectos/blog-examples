@@ -31,7 +31,7 @@ public class Listing04 {
 
   // 2
   private static void consume(ArrayList<ArrayList<Integer>> temp2) {
-    for (ArrayList<Integer> value : temp2) {
+    for (var value : temp2) {
       printOne(value);
     }
 
@@ -40,7 +40,7 @@ public class Listing04 {
 
   // 3
   private static void printOne(ArrayList<Integer> list) {
-    for (Integer value : list) {
+    for (var value : list) {
       int intValue = value.intValue();
 
       printOneInt(intValue);

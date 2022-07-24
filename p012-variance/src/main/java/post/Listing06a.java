@@ -29,16 +29,15 @@ public class Listing06a {
   }
 
   private static void consume(Iterable<? extends Iterable<? extends Number>> temp2) {
-    for (/*1*/ Iterable<? extends Number> value : temp2) {
+    for (var value : temp2) {
       printOne(value);
     }
 
     System.out.println();
   }
 
-  // 2
   private static void printOne(Iterable<? extends Number> one) {
-    for (/*3*/ Number value : one) {
+    for (var value : one) {
       int intValue = value.intValue();
 
       printOneInt(intValue);

@@ -16,38 +16,18 @@
 package post;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
-public class Listing06 {
+public class Listing10d {
   public static void main(String[] args) {
-    var temp1 = new ArrayList<ArrayList<Integer>>();
+    var temp1 = new HashSet<Collection<Double>>();
 
-    temp1.add(New.arrayList(1, 2, 3));
-    temp1.add(New.arrayList(4, 5, 6));
-    temp1.add(New.arrayList(7, 8, 9));
+    Listing10.add(temp1, HashSet::new, 1D, 2D, 2D, 3D, 3D);
+    Listing10.add(temp1, ArrayList::new, 4D, 5D, 6D);
+    Listing10.add(temp1, LinkedHashSet::new, 7D, 8D, 7D, 9D);
 
-    consume(temp1);
-  }
-
-  private static void consume(List<? extends List<? extends Number>> temp2) {
-    for (var value : temp2) {
-      printOne(value);
-    }
-
-    System.out.println();
-  }
-
-  // 1
-  private static void printOne(List<? extends Number> one) {
-    for (var value : one) {
-      int intValue = value.intValue();
-
-      printOneInt(intValue);
-    }
-  }
-
-  private static void printOneInt(int value) {
-    System.out.print(value);
-    System.out.print(' ');
+    Listing10.consume(temp1);
   }
 }

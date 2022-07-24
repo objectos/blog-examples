@@ -31,7 +31,7 @@ public class Listing05 {
 
   //private static void consume(List<List<Integer>> temp2) {
   private static void consume(List<? extends List<Integer>> temp2) {
-    for (List<Integer> value : temp2) {
+    for (var value : temp2) {
       printOne(value);
     }
 
@@ -39,7 +39,7 @@ public class Listing05 {
   }
 
   private static void printOne(List<Integer> list) {
-    for (Integer value : list) {
+    for (var value : list) {
       int intValue = value.intValue();
 
       printOneInt(intValue);

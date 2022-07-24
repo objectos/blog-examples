@@ -16,6 +16,7 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -31,7 +32,7 @@ public class Listing09a {
   }
 
   @SafeVarargs
-  private static <COLL extends List<E>, E extends Number> void add(
+  private static <COLL extends Collection<E>, E extends Number> void add(
       List<? super COLL> temp1, Supplier<COLL> factory, E... values) {
     COLL coll = factory.get();
 

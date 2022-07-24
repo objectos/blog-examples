@@ -19,24 +19,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class Listing10 {
   public static void main(String[] args) {
-    var temp1 = new ArrayList<Iterable<Number>>();
+    var temp1 = new LinkedHashSet<Iterable<Number>>();
 
-    add(temp1, ArrayList::new, 1, 2, 3);
-    add(temp1, LinkedList::new, 4D, 5D, 6D);
-    add(temp1, LinkedHashSet::new, 7L, 8L, 9L);
+    add(temp1, ArrayList::new, 1, 2D, 3L);
+    add(temp1, LinkedList::new, (byte) 4, (short) 5, 6D);
+    add(temp1, LinkedHashSet::new, 7D, 8F, 7D, 9F, 9F);
 
     consume(temp1);
   }
 
   @SafeVarargs
-  private static <E extends Number> void add(
-      List<? super Iterable<E>> temp1, Supplier<Collection<E>> factory, E... values) {
-    var coll = factory.get();
+  static <COLL extends Collection<E>, E extends Number> void add(
+      Collection<? super COLL> temp1, Supplier<COLL> factory, E... values) {
+    COLL coll = factory.get();
 
     for (var value : values) {
       coll.add(value);
@@ -45,7 +44,7 @@ public class Listing10 {
     temp1.add(coll);
   }
 
-  private static void consume(Iterable<? extends Iterable<? extends Number>> temp2) {
+  static void consume(Iterable<? extends Iterable<? extends Number>> temp2) {
     for (Iterable<? extends Number> value : temp2) {
       printOne(value);
     }
