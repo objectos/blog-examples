@@ -16,17 +16,18 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Listing01 {
   @SuppressWarnings({"unchecked", "rawtypes"})
   public static void main(String[] args) {
     var temp1 = new ArrayList<ArrayList<Integer>>();
-    temp1.add(New.arrayList(1, 2, 3));
+    temp1.add(new ArrayList<>());
 
     List temp2 = temp1;
 
-    temp2.add(New.linkedList(4, 5, 6));
+    temp2.add(new LinkedList<>());
 
     var arrayList0 = temp1.get(0);
     System.out.println(arrayList0);

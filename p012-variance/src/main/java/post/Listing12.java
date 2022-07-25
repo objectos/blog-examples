@@ -18,25 +18,19 @@ package post;
 import java.util.Iterator;
 import java.util.List;
 
-public class Listing11 {
-  @SuppressWarnings("unused")
-  static void consume(List<? extends Number> temp2) {
-    // only 'read' the type variable
-    Number number = temp2.get(0);
-    Iterator<? extends Number> iterator = temp2.iterator();
-    Number next = iterator.next();
-
-    // takes an non-parameterized argument: OK
-    Number removed = temp2.remove(0);
-
-    // non-parameterized method: also OK
-    int size = temp2.size();
+public class Listing12 {
+  static void add(List<? super Number> temp1) {
+    // 'writing' to the type variable: OK
+    temp1.add(1D);
+    temp1.set(0, 123L);
+    temp1.addAll(List.of(1, 2, 3));
   }
 
-  //  static void invalid(List<? extends Number> temp2) {
-  //    // tries to 'write' to the type variable: not OK
-  //    temp2.add(1D);
-  //    temp2.set(0, 123L);
-  //    temp2.addAll(List.of(1, 2, 3));
-  //  }
+  @SuppressWarnings("unused")
+  static void read(List<? super Number> temp1) {
+    // 'reading' the type variable: java.lang.Object
+    Object value = temp1.get(0);
+    Iterator<? super Number> iterator = temp1.iterator();
+    Object next = iterator.next();
+  }
 }

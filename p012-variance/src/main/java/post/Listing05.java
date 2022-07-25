@@ -29,7 +29,6 @@ public class Listing05 {
     consume(temp1);
   }
 
-  //private static void consume(List<List<Integer>> temp2) {
   private static void consume(List<? extends List<Integer>> temp2) {
     for (var value : temp2) {
       printOne(value);
