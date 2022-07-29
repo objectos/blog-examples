@@ -51,6 +51,7 @@
 		<module>p010-binary-data</module>
 		<module>p011-generic-constructors</module>
 		<module>p012-variance</module>
+		<module>p013-switch</module>
 	</modules>
 
 	<build>
@@ -95,6 +96,14 @@ limitations under the License.
 				</executions>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>3.3.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<dependencyManagement>
