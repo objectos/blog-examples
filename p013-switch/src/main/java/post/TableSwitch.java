@@ -15,30 +15,108 @@
  */
 package post;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Param;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import java.util.Arrays;
 
-@State(Scope.Thread)
 public class TableSwitch {
+  private static final int TABLESWITCH = 0xaa;
 
-  @Param({"1", "2", "3", "4", "5", "6", "7", "8", "1024"})
-  int state;
+  private static final int PRINT_STRING = -1;
 
-  @Benchmark
-  public int benchmark() {
-    return switch (state) {
-      case 1 -> 1001;
-      case 2 -> 1002;
-      case 3 -> 1003;
-      case 4 -> 1004;
-      case 5 -> 1005;
-      case 6 -> 1006;
-      case 7 -> 1007;
-      case 8 -> 1008;
-      default -> Integer.MAX_VALUE;
-    };
+  private static final int STOP = -2;
+
+  private static final int NOOP = -3;
+
+  private final int[] instructions = new int[256];
+
+  private final String[] strings = new String[16];
+
+  private int stringsIndex;
+
+  private int ip;
+
+  public TableSwitch() {
+    Arrays.fill(instructions, NOOP);
   }
 
+  public static void main(String[] args) {
+    var tswitch = new TableSwitch();
+    tswitch.set(1, TABLESWITCH);
+    tswitch.set(2, 53); // default
+    tswitch.set(3, 5); // low
+    tswitch.set(4, 8); // high
+    tswitch.set(5, 32); // case 5
+    tswitch.set(6, 39); // case 6
+    tswitch.set(7, 53); // case 7
+    tswitch.set(8, 46); // case 8
+
+    tswitch.printString(32, "five");
+    tswitch.printString(39, "six");
+    tswitch.printString(46, "eight");
+    tswitch.printString(53, "other");
+
+    tswitch.execute(5);
+    tswitch.execute(6);
+    tswitch.execute(7);
+    tswitch.execute(8);
+    tswitch.execute(9);
+  }
+
+  public final void execute(int value) {
+    ip = 0;
+
+    while (true) {
+      var inst = instructions[ip++];
+
+      if (inst == NOOP) {
+        continue;
+      }
+
+      if (inst == TABLESWITCH) {
+        tableswitch(value);
+
+        continue;
+      }
+
+      if (inst == PRINT_STRING) {
+        var index = instructions[ip++];
+
+        var s = strings[index];
+
+        System.out.println(s);
+
+        continue;
+      }
+
+      if (inst == STOP) {
+        return;
+      }
+
+      throw new UnsupportedOperationException("instruction=" + inst);
+    }
+  }
+
+  private void printString(int index, String string) {
+    instructions[index] = PRINT_STRING;
+    instructions[index + 1] = stringsIndex;
+    strings[stringsIndex++] = string;
+    instructions[index + 2] = STOP;
+  }
+
+  private void set(int index, int value) {
+    instructions[index] = value;
+  }
+
+  private void tableswitch(int value) {
+    var def = instructions[ip++];
+    var low = instructions[ip++];
+    var high = instructions[ip++];
+
+    if (value < low || value > high) {
+      ip = def;
+    } else {
+      var offset = value - low;
+
+      ip = instructions[ip + offset];
+    }
+  }
 }

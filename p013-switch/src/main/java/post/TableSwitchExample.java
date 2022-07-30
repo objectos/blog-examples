@@ -15,30 +15,18 @@
  */
 package post;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Param;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
-
-@State(Scope.Thread)
-public class LookupSwitch {
-
-  @Param({"1", "2", "3", "4", "5", "6", "7", "255", "1024"})
-  int state;
-
-  @Benchmark
-  public int benchmark() {
-    return switch (state) {
-      case 1 -> 1001;
-      case 2 -> 1002;
-      case 3 -> 1003;
-      case 4 -> 1004;
-      case 5 -> 1005;
-      case 6 -> 1006;
-      case 7 -> 1007;
-      case 255 -> 1255;
-      default -> Integer.MAX_VALUE;
+public class TableSwitchExample {
+  public String tableSwitch(int value) {
+    return switch (value) {
+      case 5 -> five();
+      case 6 -> six();
+      case 8 -> eight();
+      default -> default_();
     };
   }
 
+  private String five() { return "five"; }
+  private String six() { return "six"; }
+  private String eight() { return "eight"; }
+  private String default_() { return "other"; }
 }
