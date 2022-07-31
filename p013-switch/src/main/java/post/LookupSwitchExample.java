@@ -18,15 +18,15 @@ package post;
 public class LookupSwitchExample {
   public String lookupSwitch(int value) {
     return switch (value) {
-      case 10 -> ten();
       case 100 -> oneHundred();
-      case 1000 -> oneThowsand();
+      case 10 -> ten();
+      case 1000 -> oneThousand();
       default -> default_();
     };
   }
 
   private String ten() { return "ten"; }
-  private String oneHundred() { return "100"; }
-  private String oneThowsand() { return "1000"; }
+  private String oneHundred() { return "one hundred"; }
+  private String oneThousand() { return "one thousand"; }
   private String default_() { return "other"; }
 }

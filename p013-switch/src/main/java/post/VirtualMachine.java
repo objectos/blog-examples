@@ -18,6 +18,7 @@ package post;
 import java.util.Arrays;
 
 public class VirtualMachine {
+  static final int LOOKUPSWITCH = 0xab;
   static final int TABLESWITCH = 0xaa;
   private static final int PRINT_STRING = -1;
   private static final int STOP = -2;
@@ -42,6 +43,10 @@ public class VirtualMachine {
         // noop
       }
 
+      else if (inst == LOOKUPSWITCH) {
+        lookupswitch(value);
+      }
+
       else if (inst == TABLESWITCH) {
         tableswitch(value);
       }
@@ -62,6 +67,20 @@ public class VirtualMachine {
     }
   }
 
+  public final void lookupswitch(int def, int count, int... pairs) {
+    instructions[ip++] = LOOKUPSWITCH;
+    instructions[ip++] = def;
+    instructions[ip++] = count;
+
+    for (int i = 0; i < pairs.length; i += 2) {
+      instructions[ip++] = pairs[i];
+    }
+
+    for (int i = 1; i < pairs.length; i += 2) {
+      instructions[ip++] = pairs[i];
+    }
+  }
+
   public final void printString(int index, String string) {
     instructions[index] = PRINT_STRING;
     instructions[index + 1] = stringsIndex;
@@ -77,6 +96,23 @@ public class VirtualMachine {
 
     for (var c : cases) {
       instructions[ip++] = c;
+    }
+  }
+
+  private void lookupswitch(int value) {
+    var def = instructions[ip++];
+    var count = instructions[ip++];
+
+    var res = Arrays.binarySearch(instructions, ip, ip + count, value);
+
+    if (res >= 0) {
+      var offset = res - ip;
+
+      var index = ip + count + offset;
+
+      ip = instructions[index];
+    } else {
+      ip = def;
     }
   }
 
