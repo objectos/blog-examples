@@ -38,10 +38,7 @@ public class Benchmarks {
 
   @Setup
   public void _setup() {
-    lookup = new int[] {
-        257, 68, 13, 16, 529, 528,
-        144, 146, 32, 96, 160, 162
-    };
+    lookup = new int[] {257, 68, 13, 16, 529, 528, 144, 146, 32, 96, 160, 162};
     table = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12};
   }
 
