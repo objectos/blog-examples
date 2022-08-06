@@ -52,6 +52,7 @@
 		<module>p011-generic-constructors</module>
 		<module>p012-variance</module>
 		<module>p013-switch</module>
+		<module>p014-array-vm-limit</module>
 	</modules>
 
 	<build>
