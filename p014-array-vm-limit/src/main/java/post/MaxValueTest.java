@@ -22,7 +22,7 @@ public class MaxValueTest {
     oom(2, "Java heap space");
     oom(3, "Java heap space");
 
-    System.out.println("Test was sucessful");
+    System.out.println("Test was successful");
   }
 
   private static void oom(int value, String expected) {

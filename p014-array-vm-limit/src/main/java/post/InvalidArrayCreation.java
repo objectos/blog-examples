@@ -20,7 +20,7 @@ public class InvalidArrayCreation {
   public static void main(String[] args) {
     var a = new Object[-1];
     // does not compile!
-    // long size = 123L;
-    // var a = new Object[size];
+    // long length = 123L;
+    // var a = new Object[length];
   }
 }

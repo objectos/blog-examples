@@ -27,6 +27,6 @@ public class MaxValueJDK6Test {
     System.out.println(a[0]);
     System.out.println(a[Integer.MAX_VALUE - 1]);
 
-    System.out.println("Test was sucessful");
+    System.out.println("Test was successful");
   }
 }
