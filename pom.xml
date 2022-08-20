@@ -53,6 +53,7 @@
 		<module>p012-variance</module>
 		<module>p013-switch</module>
 		<module>p014-array-vm-limit</module>
+		<module>p015-safe-varargs</module>
 	</modules>
 
 	<build>
