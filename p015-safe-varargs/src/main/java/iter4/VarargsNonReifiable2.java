@@ -33,9 +33,7 @@ public class VarargsNonReifiable2 {
   private static Set<String> asSet(List<String>... lists) {
     var set = new HashSet<String>();
     for (var list : lists) {
-      for (var s : list) {
-        set.add(s);
-      }
+      set.addAll(list);
     }
     return set;
   }
