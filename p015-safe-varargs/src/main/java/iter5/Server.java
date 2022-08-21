@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter2;
+package iter5;
 
-import iter2.ConfigValue.IntValue;
-import iter2.ConfigValue.StringValue;
+import iter5.ConfigValue.IntValue;
+import iter5.ConfigValue.StringValue;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Server {
-  @SuppressWarnings("unchecked")
   public static void main(String[] args) {
     var serviceA = new HashMap<String, ConfigValue>();
     serviceA.put("name", new StringValue("Service A"));

@@ -18,19 +18,16 @@ package iter4;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DistinctGeneric {
-  public static void main(String... args) {
-    var set = asSet("A", "B", "B", "C", "C", "C");
-
-    System.out.println("Distinct arguments are:");
+public class VarargsInvocation1 {
+  public static void main(String[] args) {
+    var set = asSet("A", "B", "B", "C", "C");
     System.out.println(set);
   }
 
-  @SafeVarargs
-  private static <E> Set<E> asSet(E... values) {
-    var set = new HashSet<E>();
-    for (var value : values) {
-      set.add(value);
+  private static Set<String> asSet(String... strings) {
+    var set = new HashSet<String>();
+    for (String s : strings) {
+      set.add(s);
     }
     return set;
   }

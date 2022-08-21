@@ -15,29 +15,19 @@
  */
 package iter4;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class DistinctParameterized {
-  public static void main(String... args) {
-    var set = asSet(
-      Arrays.asList("A", "B", "C"),
-      Arrays.asList("B", "C", "D")
-    );
-
-    System.out.println("Distinct arguments are:");
+public class VarargsInvocation2 {
+  public static void main(String[] args) {
+    var set = asSet(new String[] {"A", "B", "B", "C", "C"});
     System.out.println(set);
   }
 
-  @SafeVarargs
-  private static Set<String> asSet(List<String>... values) {
+  private static Set<String> asSet(String... strings) {
     var set = new HashSet<String>();
-    for (var list : values) {
-      for (var value : list) {
-        set.add(value);
-      }
+    for (String s : strings) {
+      set.add(s);
     }
     return set;
   }

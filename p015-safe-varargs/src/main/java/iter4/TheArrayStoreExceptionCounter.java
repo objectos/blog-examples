@@ -13,27 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package iter4;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-public class WarningExample {
+public class TheArrayStoreExceptionCounter {
+  @SuppressWarnings({"rawtypes", "unchecked"})
   public static void main(String[] args) {
-    var set = asSet(args);
+    List a = new ArrayList<String>(2);
 
-    System.out.println("Distinct arguments are:");
-    System.out.println(set);
-  }
-
-  @SafeVarargs
-  private static <T> Set<T> asSet(T... args) {
-    var set = new HashSet<T>();
-
-    for (var a : args) {
-      set.add(a);
+    var c = a.getClass();
+    var typeParameters = c.getTypeParameters();
+    for (var typeVar : typeParameters) {
+      System.out.println(typeVar);
     }
 
-    return set;
+    System.out.println("Index 0");
+    a.add("abc");
+
+    System.out.println("Index 1");
+    a.add(123);
   }
 }

@@ -13,24 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter4;
+package iter3;
 
-import java.util.HashSet;
-import java.util.Set;
+import iter3.ConfigValue.IntValue;
+import iter3.ConfigValue.StringValue;
 
-public class Distinct {
-  public static void main(String... args) {
-    var set = asSet("A", "B", "B", "C", "C", "C");
+sealed interface ConfigValue permits IntValue, StringValue {
 
-    System.out.println("Distinct values are: " + set);
-    System.out.println(set);
-  }
-
-  private static Set<String> asSet(String... values) {
-    var set = new HashSet<String>();
-    for (var value : values) {
-      set.add(value);
+  record IntValue(int value) implements ConfigValue {
+    @Override
+    public void apply(String key) {
+      System.out.format("%s=%d%n", key, value);
     }
-    return set;
   }
+
+  record StringValue(String value) implements ConfigValue {
+    @Override
+    public void apply(String key) {
+      System.out.format("%s=%s%n", key, value);
+    }
+  }
+
+  void apply(String key);
+
 }
