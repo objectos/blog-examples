@@ -15,10 +15,7 @@
  */
 package iter3;
 
-import iter3.ConfigValue.IntValue;
-import iter3.ConfigValue.StringValue;
-
-sealed interface ConfigValue permits IntValue, StringValue {
+sealed interface ConfigValue {
 
   record IntValue(int value) implements ConfigValue {
     @Override
