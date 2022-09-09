@@ -54,6 +54,7 @@
 		<module>p013-switch</module>
 		<module>p014-array-vm-limit</module>
 		<module>p015-safe-varargs</module>
+		<module>p016-hash-table</module>
 	</modules>
 
 	<build>
