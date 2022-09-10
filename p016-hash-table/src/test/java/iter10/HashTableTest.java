@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter08;
+package iter10;
 
 import static org.testng.Assert.assertEquals;
 
@@ -22,27 +22,39 @@ import shared.Key;
 
 public class HashTableTest {
   @Test(description = """
-  get() test case
+  put() test case
 
-  - hash collision
-  - non existing key
+  - refactor bucket() method
   """)
-  public void iter08() {
+  public void iter10() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 3);
-    var b = new Key("BBB", 3);
-    var c = new Key("CCC", 0);
+    var a = new Key("AAA", 1);
+    var b = new Key("BBB", 2);
+    var c = new Key("CCC", 3);
+    var d = new Key("DDD", 4);
 
     assertEquals(ht.put(a, "aaa"), null);
     assertEquals(ht.put(b, "bbb"), null);
     assertEquals(ht.put(c, "ccc"), null);
+    assertEquals(ht.put(d, "ddd"), null);
 
-    var d = new Key("DDD", 1);
-
-    assertEquals(ht.get(a), "aaa");
-    assertEquals(ht.get(b), "bbb");
-    assertEquals(ht.get(c), "ccc");
-    assertEquals(ht.get(d), null);
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 |     |     |
+      |   1 | AAA | aaa |
+      |   2 | BBB | bbb |
+      |   3 | CCC | ccc |
+      |   4 | DDD | ddd |
+      |   5 |     |     |
+      |   6 |     |     |
+      |   7 |     |     |
+      +-----+-----+-----+
+      """
+    );
   }
 }

@@ -13,36 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter08;
+package iter10;
 
-public class HashTable<K, V> extends iter07.HashTable<K, V> {
-  @SuppressWarnings("unchecked")
+public class HashTable<K, V> extends iter09.HashTable<K, V> {
   @Override
-  protected final V get2(K key, int bucket) {
-    for (var i = bucket + 1; i < keys.length; i++) {
-      var candidate = keys[i];
+  protected final int bucket(K key) {
+    var hc = key.hashCode();
 
-      if (candidate == null) {
-        return null;
-      }
+    var mask = keys.length - 1;
 
-      if (key.equals(candidate)) {
-        return (V) values[i];
-      }
-    }
-
-    for (var i = 0; i < bucket; i++) {
-      var candidate = keys[i];
-
-      if (candidate == null) {
-        return null;
-      }
-
-      if (key.equals(candidate)) {
-        return (V) values[i];
-      }
-    }
-
-    throw new AssertionError();
+    return hc & mask;
   }
 }

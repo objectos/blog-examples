@@ -17,7 +17,7 @@ package iter07;
 
 public class HashTable<K, V> extends iter06.HashTable<K, V> {
   @Override
-  protected V put3(K key, V value, int bucket) {
+  protected final V put3(K key, V value, int bucket) {
     for (var index = 0; index < bucket; index++) {
       var existing = keys[index];
 

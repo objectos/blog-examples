@@ -30,7 +30,7 @@ public class HashTable<K, V> {
     values = new Object[4];
   }
 
-  public V put(K key, V value) {
+  public final V put(K key, V value) {
     Objects.requireNonNull(key);
     Objects.requireNonNull(value);
 
@@ -57,7 +57,7 @@ public class HashTable<K, V> {
     throw new UnsupportedOperationException("Implement me");
   }
 
-  protected final V putInsert(K key, V value, int bucket) {
+  protected V putInsert(K key, V value, int bucket) {
     keys[bucket] = key;
 
     values[bucket] = value;
