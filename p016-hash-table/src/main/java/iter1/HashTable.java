@@ -36,13 +36,13 @@ public class HashTable<K, V> {
 
     var bucket = bucket(key);
 
-    var existing = keys[bucket];
+    var candidate = keys[bucket];
 
-    if (key.equals(existing)) {
+    if (key.equals(candidate)) {
       return (V) values[bucket];
     }
 
-    return get1(key, existing);
+    return get1(key, bucket, candidate);
   }
 
   public final V put(K key, V value) {
@@ -62,9 +62,7 @@ public class HashTable<K, V> {
     return put1(key, value, bucket, existing);
   }
 
-  public int size() {
-    return size;
-  }
+  public int size() { return size; }
 
   protected int bucket(K key) {
     var hc = key.hashCode();
@@ -72,7 +70,7 @@ public class HashTable<K, V> {
     return hc % keys.length;
   }
 
-  protected V get1(K key, Object existing) {
+  protected V get1(K key, int bucket, Object candidate) {
     throw new UnsupportedOperationException("Implement me");
   }
 

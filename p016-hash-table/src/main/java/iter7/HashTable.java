@@ -13,19 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter3;
+package iter7;
 
-public class HashTable<K, V> extends iter2.HashTable<K, V> {
+public class HashTable<K, V> extends iter6.HashTable<K, V> {
+  @SuppressWarnings("unchecked")
   @Override
-  protected final V get1(K key, int bucket, Object candidate) {
-    if (candidate == null) {
-      return null;
+  protected V get2(K key, int bucket) {
+    for (var i = bucket + 1; i < keys.length; i++) {
+      var candidate = keys[i];
+
+      if (candidate == null) {
+        return null;
+      }
+
+      if (key.equals(candidate)) {
+        return (V) values[i];
+      }
     }
 
-    return get2(key, bucket);
-  }
+    for (var i = 0; i < bucket; i++) {
+      var candidate = keys[i];
 
-  protected V get2(K key, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
+      if (candidate == null) {
+        return null;
+      }
+
+      if (key.equals(candidate)) {
+        return (V) values[i];
+      }
+    }
+
+    throw new AssertionError();
   }
 }
