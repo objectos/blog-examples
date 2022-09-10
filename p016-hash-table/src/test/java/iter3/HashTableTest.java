@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter1;
+package iter3;
 
 import static org.testng.Assert.assertEquals;
 
@@ -21,17 +21,14 @@ import org.testng.annotations.Test;
 
 public class HashTableTest {
   @Test
-  public void iter1() {
+  public void iter3() {
     var ht = new HashTable<Integer, String>();
     assertEquals(ht.size(), 0);
 
     assertEquals(ht.put(1, "One"), null);
     assertEquals(ht.size(), 1);
 
-    assertEquals(ht.put(2, "Two"), null);
-    assertEquals(ht.size(), 2);
-
     assertEquals(ht.get(1), "One");
-    assertEquals(ht.get(2), "Two");
+    assertEquals(ht.get(2), null);
   }
 }

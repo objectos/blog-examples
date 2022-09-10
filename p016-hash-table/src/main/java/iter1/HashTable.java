@@ -16,91 +16,79 @@
 package iter1;
 
 import java.util.Objects;
-import shared.Key;
 
-final class HashTable {
+public class HashTable<K, V> {
+  protected Object[] keys;
 
-  private static final int INITIAL_SIZE = 8;
+  protected Object[] values;
 
-  private final Key[] keys = new Key[INITIAL_SIZE];
+  protected int size;
 
-  private final String[] values = new String[INITIAL_SIZE];
+  public HashTable() {
+    keys = new Object[4];
 
-  private int size;
-
-  public final String get(Key key) {
-    Objects.requireNonNull(key);
-
-    var hc = key.hashCode();
-
-    var bucket = hc % keys.length;
-
-    var existingKey = keys[bucket];
-
-    return key.equals(existingKey) ? values[bucket] : null;
+    values = new Object[4];
   }
 
-  public final String put(Key key, String value) {
+  @SuppressWarnings("unchecked")
+  public final V get(K key) {
+    Objects.requireNonNull(key);
+
+    var bucket = bucket(key);
+
+    var existing = keys[bucket];
+
+    if (key.equals(existing)) {
+      return (V) values[bucket];
+    }
+
+    return get1(key, existing);
+  }
+
+  public final V put(K key, V value) {
     Objects.requireNonNull(key);
     Objects.requireNonNull(value);
 
-    var hc = key.hashCode();
+    resizeIfNecessary();
 
-    var bucket = hc % keys.length;
+    var bucket = bucket(key);
 
     var existing = keys[bucket];
 
     if (existing == null) {
-      keys[bucket] = key;
-
-      values[bucket] = value;
-
-      size++;
-
-      return null;
+      return putInsert(key, value, bucket);
     }
 
-    if (existing.equals(key)) {
-      var oldValue = values[bucket];
-
-      values[bucket] = value;
-
-      return oldValue;
-    }
-
-    throw new UnsupportedOperationException("Hash collision!");
+    return put1(key, value, bucket, existing);
   }
 
-  public final int size() {
+  public int size() {
     return size;
   }
 
-  @Override
-  public final String toString() {
-    var sb = new StringBuilder();
+  protected int bucket(K key) {
+    var hc = key.hashCode();
 
-    sb.append(
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      """);
-
-    for (int idx = 0; idx < keys.length; idx++) {
-      var key = keys[idx];
-
-      if (key != null) {
-        var value = values[idx];
-
-        sb.append("| %3d | %3s | %3s |\n".formatted(idx, key, value));
-      } else {
-        sb.append("| %3d |     |     |\n".formatted(idx));
-      }
-    }
-
-    sb.append("+-----+-----+-----+\n");
-
-    return sb.toString();
+    return hc % keys.length;
   }
 
+  protected V get1(K key, Object existing) {
+    throw new UnsupportedOperationException("Implement me");
+  }
+
+  protected V put1(K key, V value, int bucket, Object existing) {
+    throw new UnsupportedOperationException("Implement me");
+  }
+
+  protected final V putInsert(K key, V value, int bucket) {
+    keys[bucket] = key;
+
+    values[bucket] = value;
+
+    size++;
+
+    return null;
+  }
+
+  protected void resizeIfNecessary() { /* no-op */ }
 }
