@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter7;
+package iter07;
 
 import static org.testng.Assert.assertEquals;
 
@@ -22,7 +22,7 @@ import shared.Key;
 
 public class HashTableTest {
   @Test
-  public void iter7() {
+  public void iter07() {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 3);
@@ -33,11 +33,18 @@ public class HashTableTest {
     assertEquals(ht.put(b, "bbb"), null);
     assertEquals(ht.put(c, "ccc"), null);
 
-    var d = new Key("DDD", 1);
-
-    assertEquals(ht.get(a), "aaa");
-    assertEquals(ht.get(b), "bbb");
-    assertEquals(ht.get(c), "ccc");
-    assertEquals(ht.get(d), null);
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 | BBB | bbb |
+      |   1 | CCC | ccc |
+      |   2 |     |     |
+      |   3 | AAA | aaa |
+      +-----+-----+-----+
+      """
+    );
   }
 }

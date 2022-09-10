@@ -13,30 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter2;
+package iter02;
 
-public class HashTable<K, V> extends iter1.HashTable<K, V> {
-  @Override
-  protected final V put1(K key, V value, int bucket, Object existing) {
-    if (existing.equals(key)) {
-      return putReplace(key, value, bucket);
-    }
+import static org.testng.Assert.assertEquals;
 
-    return put2(key, value, bucket);
-  }
+import org.testng.annotations.Test;
 
-  protected V put2(K key, V value, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
-  }
+public class HashTableTest {
+  @Test
+  public void iter02() {
+    var ht = new HashTable<Integer, String>();
+    assertEquals(ht.size(), 0);
 
-  @SuppressWarnings("unchecked")
-  protected final V putReplace(K key, V value, int bucket) {
-    var oldValue = values[bucket];
+    assertEquals(ht.put(1, "One"), null);
+    assertEquals(ht.get(1), "One");
 
-    keys[bucket] = key;
-
-    values[bucket] = value;
-
-    return (V) oldValue;
+    assertEquals(ht.put(2, "Two"), null);
+    assertEquals(ht.get(2), "Two");
   }
 }

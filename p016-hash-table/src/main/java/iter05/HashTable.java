@@ -13,27 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter6;
+package iter05;
 
-public class HashTable<K, V> extends iter5.HashTable<K, V> {
+public class HashTable<K, V> extends iter04.HashTable<K, V> {
   @Override
-  protected V put3(K key, V value, int bucket) {
-    for (var index = 0; index < bucket; index++) {
-      var existing = keys[index];
+  public final String toString() {
+    var sb = new StringBuilder();
 
-      if (existing == null) {
-        return putInsert(key, value, index);
-      }
+    sb.append(
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      """);
 
-      if (existing.equals(key)) {
-        return putReplace(key, value, index);
+    for (int idx = 0; idx < keys.length; idx++) {
+      var key = keys[idx];
+
+      if (key != null) {
+        var value = values[idx];
+
+        sb.append("| %3d | %3s | %3s |\n".formatted(idx, key, value));
+      } else {
+        sb.append("| %3d |     |     |\n".formatted(idx));
       }
     }
 
-    return put4(key, value, bucket);
-  }
+    sb.append("+-----+-----+-----+\n");
 
-  private V put4(K key, V value, int bucket) {
-    throw new AssertionError("Load factor not implemented?");
+    return sb.toString();
   }
 }

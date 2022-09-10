@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter3;
+package iter04;
 
-public class HashTable<K, V> extends iter2.HashTable<K, V> {
+public class HashTable<K, V> extends iter03.HashTable<K, V> {
   @Override
   protected final V get1(K key, int bucket, Object candidate) {
     if (candidate == null) {

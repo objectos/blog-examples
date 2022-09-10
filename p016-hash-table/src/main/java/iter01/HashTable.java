@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter1;
+package iter01;
 
 import java.util.Objects;
 
@@ -30,26 +30,9 @@ public class HashTable<K, V> {
     values = new Object[4];
   }
 
-  @SuppressWarnings("unchecked")
-  public final V get(K key) {
-    Objects.requireNonNull(key);
-
-    var bucket = bucket(key);
-
-    var candidate = keys[bucket];
-
-    if (key.equals(candidate)) {
-      return (V) values[bucket];
-    }
-
-    return get1(key, bucket, candidate);
-  }
-
-  public final V put(K key, V value) {
+  public V put(K key, V value) {
     Objects.requireNonNull(key);
     Objects.requireNonNull(value);
-
-    resizeIfNecessary();
 
     var bucket = bucket(key);
 
@@ -62,16 +45,12 @@ public class HashTable<K, V> {
     return put1(key, value, bucket, existing);
   }
 
-  public int size() { return size; }
+  public final int size() { return size; }
 
   protected int bucket(K key) {
     var hc = key.hashCode();
 
     return hc % keys.length;
-  }
-
-  protected V get1(K key, int bucket, Object candidate) {
-    throw new UnsupportedOperationException("Implement me");
   }
 
   protected V put1(K key, V value, int bucket, Object existing) {
@@ -87,6 +66,4 @@ public class HashTable<K, V> {
 
     return null;
   }
-
-  protected void resizeIfNecessary() { /* no-op */ }
 }

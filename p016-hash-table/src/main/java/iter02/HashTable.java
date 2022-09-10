@@ -13,32 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter4;
+package iter02;
 
-import static org.testng.Assert.assertEquals;
+import java.util.Objects;
 
-import org.testng.annotations.Test;
+public class HashTable<K, V> extends iter01.HashTable<K, V> {
+  @SuppressWarnings("unchecked")
+  public final V get(K key) {
+    Objects.requireNonNull(key);
 
-public class HashTableTest {
-  @Test
-  public void iter4() {
-    var ht = new HashTable<Integer, String>();
+    var bucket = bucket(key);
 
-    assertEquals(ht.put(1, "One"), null);
-    assertEquals(ht.put(2, "Two"), null);
+    var candidate = keys[bucket];
 
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 |   1 | One |
-      |   2 |   2 | Two |
-      |   3 |     |     |
-      +-----+-----+-----+
-      """
-    );
+    if (key.equals(candidate)) {
+      return (V) values[bucket];
+    }
+
+    return get1(key, bucket, candidate);
+  }
+
+  protected V get1(K key, int bucket, Object candidate) {
+    throw new UnsupportedOperationException("Implement me");
   }
 }

@@ -13,38 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter5;
+package iter01;
 
 import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
-import shared.Key;
 
 public class HashTableTest {
   @Test
-  public void iter5() {
-    var ht = new HashTable<Key, String>();
+  public void iter01() {
+    var ht = new HashTable<Integer, String>();
+    assertEquals(ht.size(), 0);
 
-    var a = new Key("AAA", 1);
-    var b = new Key("BBB", 1);
-    var c = new Key("CCC", 3);
+    assertEquals(ht.put(1, "One"), null);
+    assertEquals(ht.size(), 1);
 
-    assertEquals(ht.put(a, "aaa"), null);
-    assertEquals(ht.put(b, "bbb"), null);
-    assertEquals(ht.put(c, "ccc"), null);
-
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 | CCC | ccc |
-      +-----+-----+-----+
-      """
-    );
+    assertEquals(ht.put(2, "Two"), null);
+    assertEquals(ht.size(), 2);
   }
 }
