@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter07;
+package iter05;
 
-public class HashTable<K, V> extends iter06.HashTable<K, V> {
-  @Override
-  protected final V get0(Object key, int bucket, Object candidate) {
-    if (candidate == null) {
-      return null;
-    }
-
-    return get1(key, bucket);
+public class HashCodes {
+  public static void main(String[] args) {
+    print("abcdef");
+    print("foo");
+    print("bar");
+    print("foobar");
   }
 
-  protected V get1(Object key, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
+  private static void print(String s) {
+    System.out.println(s + "=" + s.hashCode());
   }
 }

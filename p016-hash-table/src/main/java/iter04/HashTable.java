@@ -15,28 +15,25 @@
  */
 package iter04;
 
+import java.util.Objects;
+
 public class HashTable<K, V> extends iter03.HashTable<K, V> {
-  @Override
-  protected final V put1(K key, V value, int bucket, Object existing) {
-    if (existing.equals(key)) {
-      return putReplace(key, value, bucket);
+  @SuppressWarnings("unchecked")
+  public final V get(Object key) {
+    Objects.requireNonNull(key, "key == null");
+
+    var bucket = bucket(key);
+
+    var candidate = keys[bucket];
+
+    if (key.equals(candidate)) {
+      return (V) values[bucket];
     }
 
-    return put2(key, value, bucket);
+    return get0(key, bucket, candidate);
   }
 
-  protected V put2(K key, V value, int bucket) {
+  protected V get0(Object key, int bucket, Object candidate) {
     throw new UnsupportedOperationException("Implement me");
-  }
-
-  @SuppressWarnings("unchecked")
-  protected final V putReplace(K key, V value, int bucket) {
-    var oldValue = values[bucket];
-
-    keys[bucket] = key;
-
-    values[bucket] = value;
-
-    return (V) oldValue;
   }
 }

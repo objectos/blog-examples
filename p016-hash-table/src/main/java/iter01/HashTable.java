@@ -15,49 +15,8 @@
  */
 package iter01;
 
-import java.util.Objects;
-
 public class HashTable<K, V> {
-  protected Object[] keys = new Object[4];
-
-  protected Object[] values = new Object[4];
-
   protected int size;
 
-  public final V put(K key, V value) {
-    Objects.requireNonNull(key);
-    Objects.requireNonNull(value);
-
-    var bucket = bucket(key);
-
-    var existing = keys[bucket];
-
-    if (existing == null) {
-      return putInsert(key, value, bucket);
-    }
-
-    return put1(key, value, bucket, existing);
-  }
-
   public final int size() { return size; }
-
-  protected int bucket(K key) {
-    var hc = key.hashCode();
-
-    return hc % keys.length;
-  }
-
-  protected V put1(K key, V value, int bucket, Object existing) {
-    throw new UnsupportedOperationException("Implement me");
-  }
-
-  protected V putInsert(K key, V value, int bucket) {
-    keys[bucket] = key;
-
-    values[bucket] = value;
-
-    size++;
-
-    return null;
-  }
 }

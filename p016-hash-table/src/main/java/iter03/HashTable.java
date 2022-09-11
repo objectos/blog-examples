@@ -16,10 +16,40 @@
 package iter03;
 
 public class HashTable<K, V> extends iter02.HashTable<K, V> {
-  @Override
-  protected int bucket(K key) {
-    int hc = key.hashCode();
+  protected Object[] keys = new Object[4];
 
-    return Math.floorMod(hc, keys.length);
+  protected Object[] values = new Object[4];
+
+  protected int bucket(Object key) {
+    var hc = key.hashCode();
+
+    return hc % keys.length;
+  }
+
+  @Override
+  protected final V put0(K key, V value) {
+    var bucket = bucket(key);
+
+    var existing = keys[bucket];
+
+    if (existing == null) {
+      return putInsert(key, value, bucket);
+    }
+
+    return put1(key, value, bucket, existing);
+  }
+
+  protected V put1(K key, V value, int bucket, Object existing) {
+    throw new UnsupportedOperationException("Implement me");
+  }
+
+  protected V putInsert(K key, V value, int bucket) {
+    keys[bucket] = key;
+
+    values[bucket] = value;
+
+    size++;
+
+    return null;
   }
 }

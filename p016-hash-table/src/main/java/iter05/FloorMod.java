@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter07;
+package iter05;
 
-public class HashTable<K, V> extends iter06.HashTable<K, V> {
-  @Override
-  protected final V get0(Object key, int bucket, Object candidate) {
-    if (candidate == null) {
-      return null;
+public class FloorMod {
+  public static void main(String[] args) {
+    for (var i = 1; i < 6; i++) {
+      print(i);
+      print(-i);
     }
-
-    return get1(key, bucket);
   }
 
-  protected V get1(Object key, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
+  private static void print(int i) {
+    System.out.format("Math.floorMod(%3d, 4) = %3d%n", i, Math.floorMod(i, 4));
   }
 }

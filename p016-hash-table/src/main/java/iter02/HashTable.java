@@ -18,22 +18,14 @@ package iter02;
 import java.util.Objects;
 
 public class HashTable<K, V> extends iter01.HashTable<K, V> {
-  @SuppressWarnings("unchecked")
-  public final V get(K key) {
-    Objects.requireNonNull(key);
+  public final V put(K key, V value) {
+    Objects.requireNonNull(key, "key == null");
+    Objects.requireNonNull(value, "value == null");
 
-    var bucket = bucket(key);
-
-    var candidate = keys[bucket];
-
-    if (key.equals(candidate)) {
-      return (V) values[bucket];
-    }
-
-    return get1(key, bucket, candidate);
+    return put0(key, value);
   }
 
-  protected V get1(K key, int bucket, Object candidate) {
+  protected V put0(K key, V value) {
     throw new UnsupportedOperationException("Implement me");
   }
 }

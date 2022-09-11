@@ -16,12 +16,33 @@
 package iter11;
 
 public class HashTable<K, V> extends iter10.HashTable<K, V> {
+  @SuppressWarnings("unchecked")
   @Override
-  protected final int bucket(K key) {
-    var hc = key.hashCode();
+  protected final V get1(Object key, int bucket) {
+    for (var i = bucket + 1; i < keys.length; i++) {
+      var candidate = keys[i];
 
-    var mask = keys.length - 1;
+      if (candidate == null) {
+        return null;
+      }
 
-    return hc & mask;
+      if (key.equals(candidate)) {
+        return (V) values[i];
+      }
+    }
+
+    for (var i = 0; i < bucket; i++) {
+      var candidate = keys[i];
+
+      if (candidate == null) {
+        return null;
+      }
+
+      if (key.equals(candidate)) {
+        return (V) values[i];
+      }
+    }
+
+    throw new AssertionError();
   }
 }

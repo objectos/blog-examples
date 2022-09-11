@@ -21,19 +21,13 @@ import org.testng.annotations.Test;
 import shared.Key;
 
 public class HashTableTest {
-  @Test(description = """
-  put() test case
-
-  - assume load factor 0.75
-  - should resize on 4th insert
-  - no hash collisions
-  """)
-  public void iter10() {
+  @Test
+  public void iter08() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 1);
-    var b = new Key("BBB", 2);
-    var c = new Key("CCC", 3);
+    var a = new Key("AAA", 3);
+    var b = new Key("BBB", 3);
+    var c = new Key("CCC", 0);
 
     assertEquals(ht.put(a, "aaa"), null);
     assertEquals(ht.put(b, "bbb"), null);
@@ -45,32 +39,10 @@ public class HashTableTest {
       +-----+-----+-----+
       | idx | key | val |
       +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 | CCC | ccc |
-      +-----+-----+-----+
-      """
-    );
-
-    var d = new Key("DDD", 4);
-
-    assertEquals(ht.put(d, "ddd"), null);
-
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 | CCC | ccc |
-      |   4 | DDD | ddd |
-      |   5 |     |     |
-      |   6 |     |     |
-      |   7 |     |     |
+      |   0 | BBB | bbb |
+      |   1 | CCC | ccc |
+      |   2 |     |     |
+      |   3 | AAA | aaa |
       +-----+-----+-----+
       """
     );

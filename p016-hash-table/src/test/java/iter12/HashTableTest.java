@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter09;
+package iter12;
 
 import static org.testng.Assert.assertEquals;
 
@@ -21,12 +21,18 @@ import org.testng.annotations.Test;
 import shared.Key;
 
 public class HashTableTest {
-  @Test
-  public void iter07() {
+  @Test(description = """
+  put() test case
+
+  - assume load factor 0.75
+  - should resize on 4th insert
+  - no hash collisions
+  """)
+  public void iter10() {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 1);
-    var b = new Key("BBB", 1);
+    var b = new Key("BBB", 2);
     var c = new Key("CCC", 3);
 
     assertEquals(ht.put(a, "aaa"), null);
@@ -43,6 +49,28 @@ public class HashTableTest {
       |   1 | AAA | aaa |
       |   2 | BBB | bbb |
       |   3 | CCC | ccc |
+      +-----+-----+-----+
+      """
+    );
+
+    var d = new Key("DDD", 4);
+
+    assertEquals(ht.put(d, "ddd"), null);
+
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 |     |     |
+      |   1 | AAA | aaa |
+      |   2 | BBB | bbb |
+      |   3 | CCC | ccc |
+      |   4 | DDD | ddd |
+      |   5 |     |     |
+      |   6 |     |     |
+      |   7 |     |     |
       +-----+-----+-----+
       """
     );

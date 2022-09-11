@@ -17,30 +17,26 @@ package iter06;
 
 public class HashTable<K, V> extends iter05.HashTable<K, V> {
   @Override
-  public final String toString() {
-    var sb = new StringBuilder();
-
-    sb.append(
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      """);
-
-    for (int idx = 0; idx < keys.length; idx++) {
-      var key = keys[idx];
-
-      if (key != null) {
-        var value = values[idx];
-
-        sb.append("| %3d | %3s | %3s |\n".formatted(idx, key, value));
-      } else {
-        sb.append("| %3d |     |     |\n".formatted(idx));
-      }
+  protected final V put1(K key, V value, int bucket, Object existing) {
+    if (existing.equals(key)) {
+      return putReplace(key, value, bucket);
     }
 
-    sb.append("+-----+-----+-----+\n");
+    return put2(key, value, bucket);
+  }
 
-    return sb.toString();
+  protected V put2(K key, V value, int bucket) {
+    throw new UnsupportedOperationException("Implement me");
+  }
+
+  @SuppressWarnings("unchecked")
+  protected final V putReplace(K key, V value, int bucket) {
+    var oldValue = values[bucket];
+
+    keys[bucket] = key;
+
+    values[bucket] = value;
+
+    return (V) oldValue;
   }
 }

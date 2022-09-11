@@ -21,18 +21,20 @@ import org.testng.annotations.Test;
 
 public class HashTableTest {
   @Test(description = """
-  put() & get() methods
+  put() and size() methods
 
-  - negative hash code
+  - positive hash codes
+  - no hash collisions
+  - no value replacements
   """)
   public void iter03() {
     var ht = new HashTable<Integer, String>();
     assertEquals(ht.size(), 0);
 
-    assertEquals(ht.put(-1, "Minus One"), null);
-    assertEquals(ht.get(-1), "Minus One");
+    assertEquals(ht.put(1, "One"), null);
+    assertEquals(ht.size(), 1);
 
     assertEquals(ht.put(2, "Two"), null);
-    assertEquals(ht.get(2), "Two");
+    assertEquals(ht.size(), 2);
   }
 }

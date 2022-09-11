@@ -17,23 +17,36 @@ package iter02;
 
 import static org.testng.Assert.assertEquals;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HashTableTest {
   @Test(description = """
-  get() method
+  put() method
 
-  - positive hash codes
-  - no hash collisions
+  - it must reject null keys
+  - it must reject null values
   """)
   public void iter02() {
-    var ht = new HashTable<Integer, String>();
+    var ht = new HashTable<String, String>();
     assertEquals(ht.size(), 0);
 
-    assertEquals(ht.put(1, "One"), null);
-    assertEquals(ht.get(1), "One");
+    try {
+      ht.put(null, "non-null value");
 
-    assertEquals(ht.put(2, "Two"), null);
-    assertEquals(ht.get(2), "Two");
+      Assert.fail("Expected a NPE");
+    } catch (NullPointerException expected) {
+      assertEquals(expected.getMessage(), "key == null");
+    }
+
+    try {
+      ht.put("non-null key", null);
+
+      Assert.fail("Expected a NPE");
+    } catch (NullPointerException expected) {
+      assertEquals(expected.getMessage(), "value == null");
+    }
+
+    assertEquals(ht.size(), 0);
   }
 }

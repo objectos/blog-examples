@@ -23,22 +23,18 @@ public class HashTableTest {
   @Test
   public void iter06() {
     var ht = new HashTable<Integer, String>();
+    assertEquals(ht.size(), 0);
 
-    assertEquals(ht.put(1, "One"), null);
+    assertEquals(ht.put(1, "Won"), null);
+    assertEquals(ht.size(), 1);
+
+    assertEquals(ht.put(1, "One"), "Won");
+    assertEquals(ht.size(), 1);
+
     assertEquals(ht.put(2, "Two"), null);
+    assertEquals(ht.size(), 2);
 
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 |   1 | One |
-      |   2 |   2 | Two |
-      |   3 |     |     |
-      +-----+-----+-----+
-      """
-    );
+    assertEquals(ht.get(1), "One");
+    assertEquals(ht.get(2), "Two");
   }
 }

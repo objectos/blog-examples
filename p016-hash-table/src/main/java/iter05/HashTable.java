@@ -17,15 +17,9 @@ package iter05;
 
 public class HashTable<K, V> extends iter04.HashTable<K, V> {
   @Override
-  protected final V get1(K key, int bucket, Object candidate) {
-    if (candidate == null) {
-      return null;
-    }
+  protected int bucket(Object key) {
+    int hc = key.hashCode();
 
-    return get2(key, bucket);
-  }
-
-  protected V get2(K key, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
+    return Math.floorMod(hc, keys.length);
   }
 }

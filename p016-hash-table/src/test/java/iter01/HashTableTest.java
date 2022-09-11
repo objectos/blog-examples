@@ -21,20 +21,12 @@ import org.testng.annotations.Test;
 
 public class HashTableTest {
   @Test(description = """
-  put() and size() methods
+  size() method
 
-  - positive hash codes
-  - no hash collisions
-  - no value replacements
+  - empty hash table must return 0
   """)
   public void iter01() {
-    var ht = new HashTable<Integer, String>();
+    var ht = new HashTable<Object, Object>();
     assertEquals(ht.size(), 0);
-
-    assertEquals(ht.put(1, "One"), null);
-    assertEquals(ht.size(), 1);
-
-    assertEquals(ht.put(2, "Two"), null);
-    assertEquals(ht.size(), 2);
   }
 }

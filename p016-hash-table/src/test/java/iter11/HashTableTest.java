@@ -22,39 +22,27 @@ import shared.Key;
 
 public class HashTableTest {
   @Test(description = """
-  put() test case
+  get() test case
 
-  - refactor bucket() method
+  - hash collision
+  - non existing key
   """)
-  public void iter11() {
+  public void iter09() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 1);
-    var b = new Key("BBB", 2);
-    var c = new Key("CCC", 3);
-    var d = new Key("DDD", 4);
+    var a = new Key("AAA", 3);
+    var b = new Key("BBB", 3);
+    var c = new Key("CCC", 0);
 
     assertEquals(ht.put(a, "aaa"), null);
     assertEquals(ht.put(b, "bbb"), null);
     assertEquals(ht.put(c, "ccc"), null);
-    assertEquals(ht.put(d, "ddd"), null);
 
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 | CCC | ccc |
-      |   4 | DDD | ddd |
-      |   5 |     |     |
-      |   6 |     |     |
-      |   7 |     |     |
-      +-----+-----+-----+
-      """
-    );
+    var d = new Key("DDD", 1);
+
+    assertEquals(ht.get(a), "aaa");
+    assertEquals(ht.get(b), "bbb");
+    assertEquals(ht.get(c), "ccc");
+    assertEquals(ht.get(d), null);
   }
 }
