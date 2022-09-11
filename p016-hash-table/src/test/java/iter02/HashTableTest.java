@@ -20,7 +20,12 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 
 public class HashTableTest {
-  @Test
+  @Test(description = """
+  get() method
+
+  - positive hash codes
+  - no hash collisions
+  """)
   public void iter02() {
     var ht = new HashTable<Integer, String>();
     assertEquals(ht.size(), 0);

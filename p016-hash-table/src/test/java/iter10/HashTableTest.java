@@ -24,7 +24,9 @@ public class HashTableTest {
   @Test(description = """
   put() test case
 
-  - refactor bucket() method
+  - assume load factor 0.75
+  - should resize on 4th insert
+  - no hash collisions
   """)
   public void iter10() {
     var ht = new HashTable<Key, String>();
@@ -32,11 +34,27 @@ public class HashTableTest {
     var a = new Key("AAA", 1);
     var b = new Key("BBB", 2);
     var c = new Key("CCC", 3);
-    var d = new Key("DDD", 4);
 
     assertEquals(ht.put(a, "aaa"), null);
     assertEquals(ht.put(b, "bbb"), null);
     assertEquals(ht.put(c, "ccc"), null);
+
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 |     |     |
+      |   1 | AAA | aaa |
+      |   2 | BBB | bbb |
+      |   3 | CCC | ccc |
+      +-----+-----+-----+
+      """
+    );
+
+    var d = new Key("DDD", 4);
+
     assertEquals(ht.put(d, "ddd"), null);
 
     assertEquals(

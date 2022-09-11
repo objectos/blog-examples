@@ -17,15 +17,26 @@ package iter04;
 
 public class HashTable<K, V> extends iter03.HashTable<K, V> {
   @Override
-  protected final V get1(K key, int bucket, Object candidate) {
-    if (candidate == null) {
-      return null;
+  protected final V put1(K key, V value, int bucket, Object existing) {
+    if (existing.equals(key)) {
+      return putReplace(key, value, bucket);
     }
 
-    return get2(key, bucket);
+    return put2(key, value, bucket);
   }
 
-  protected V get2(K key, int bucket) {
+  protected V put2(K key, V value, int bucket) {
     throw new UnsupportedOperationException("Implement me");
+  }
+
+  @SuppressWarnings("unchecked")
+  protected final V putReplace(K key, V value, int bucket) {
+    var oldValue = values[bucket];
+
+    keys[bucket] = key;
+
+    values[bucket] = value;
+
+    return (V) oldValue;
   }
 }

@@ -21,7 +21,11 @@ import org.testng.annotations.Test;
 
 public class HashTableTest {
   @Test(description = """
+  put() and size() methods
 
+  - positive hash codes
+  - no hash collisions
+  - no value replacements
   """)
   public void iter01() {
     var ht = new HashTable<Integer, String>();

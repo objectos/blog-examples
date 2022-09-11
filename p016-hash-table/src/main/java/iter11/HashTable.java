@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter05;
+package iter11;
 
-public class HashTable<K, V> extends iter04.HashTable<K, V> {
+public class HashTable<K, V> extends iter10.HashTable<K, V> {
   @Override
-  protected final V get1(K key, int bucket, Object candidate) {
-    if (candidate == null) {
-      return null;
-    }
+  protected final int bucket(K key) {
+    var hc = key.hashCode();
 
-    return get2(key, bucket);
-  }
+    var mask = keys.length - 1;
 
-  protected V get2(K key, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
+    return hc & mask;
   }
 }

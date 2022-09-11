@@ -17,8 +17,8 @@ package iter07;
 
 public class HashTable<K, V> extends iter06.HashTable<K, V> {
   @Override
-  protected final V put3(K key, V value, int bucket) {
-    for (var index = 0; index < bucket; index++) {
+  protected V put2(K key, V value, int bucket) {
+    for (var index = bucket + 1; index < keys.length; index++) {
       var existing = keys[index];
 
       if (existing == null) {
@@ -30,10 +30,10 @@ public class HashTable<K, V> extends iter06.HashTable<K, V> {
       }
     }
 
-    return put4(key, value, bucket);
+    return put3(key, value, bucket);
   }
 
-  private V put4(K key, V value, int bucket) {
-    throw new AssertionError("Load factor not implemented?");
+  protected V put3(K key, V value, int bucket) {
+    throw new UnsupportedOperationException("Implement me");
   }
 }

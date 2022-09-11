@@ -17,26 +17,9 @@ package iter03;
 
 public class HashTable<K, V> extends iter02.HashTable<K, V> {
   @Override
-  protected final V put1(K key, V value, int bucket, Object existing) {
-    if (existing.equals(key)) {
-      return putReplace(key, value, bucket);
-    }
+  protected int bucket(K key) {
+    int hc = key.hashCode();
 
-    return put2(key, value, bucket);
-  }
-
-  protected V put2(K key, V value, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
-  }
-
-  @SuppressWarnings("unchecked")
-  protected final V putReplace(K key, V value, int bucket) {
-    var oldValue = values[bucket];
-
-    keys[bucket] = key;
-
-    values[bucket] = value;
-
-    return (V) oldValue;
+    return Math.floorMod(hc, keys.length);
   }
 }

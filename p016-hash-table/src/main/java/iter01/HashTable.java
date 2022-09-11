@@ -18,17 +18,11 @@ package iter01;
 import java.util.Objects;
 
 public class HashTable<K, V> {
-  protected Object[] keys;
+  protected Object[] keys = new Object[4];
 
-  protected Object[] values;
+  protected Object[] values = new Object[4];
 
   protected int size;
-
-  public HashTable() {
-    keys = new Object[4];
-
-    values = new Object[4];
-  }
 
   public final V put(K key, V value) {
     Objects.requireNonNull(key);
