@@ -23,8 +23,9 @@ public class HashTableTest {
   @Test(description = """
   get() method
 
-  - positive hash codes
+  - hash table contains the mapping
   - no hash collisions
+  - positive hash codes
   """)
   public void iter04() {
     var ht = new HashTable<Integer, String>();
