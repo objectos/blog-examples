@@ -20,6 +20,6 @@ public class HashTable<K, V> extends iter04.HashTable<K, V> {
   protected int bucket(Object key) {
     int hc = key.hashCode();
 
-    return Math.floorMod(hc, keys.length);
+    return Math.abs(hc) % keys.length;
   }
 }

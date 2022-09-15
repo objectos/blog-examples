@@ -15,7 +15,7 @@
  */
 package iter07;
 
-public class HashTable<K, V> extends iter06.HashTable<K, V> {
+public class HashTable<K, V> extends iter06b.HashTable<K, V> {
   @Override
   protected final V get0(Object key, int bucket, Object candidate) {
     if (candidate == null) {
