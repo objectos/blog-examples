@@ -30,12 +30,12 @@ public class HashTableTest {
     var ht = new HashTable<Integer, String>();
     assertEquals(ht.size(), 0);
 
-    assertEquals(ht.put(-1, "Minus One"), null);
+    assertEquals(ht.put(-3, "Minus Three"), null);
     assertEquals(ht.size(), 1);
-    assertEquals(ht.get(-1), "Minus One");
+    assertEquals(ht.get(-3), "Minus Three");
 
-    assertEquals(ht.put(1, "One"), null);
+    assertEquals(ht.put(3, "Three"), null);
     assertEquals(ht.size(), 2);
-    assertEquals(ht.get(1), "One");
+    assertEquals(ht.get(3), "Three");
   }
 }
