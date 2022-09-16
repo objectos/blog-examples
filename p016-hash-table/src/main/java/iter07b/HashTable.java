@@ -13,30 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter06b;
+package iter07b;
 
-public class HashTable<K, V> extends iter05.HashTable<K, V> {
+public class HashTable<K, V> extends iter07.HashTable<K, V> {
   @Override
-  protected final V put1(K key, V value, int bucket, Object existing) {
-    if (existing.equals(key)) {
-      return putReplace(key, value, bucket);
+  protected final V get0(Object key, int bucket, Object candidate) {
+    if (candidate == null) {
+      return null;
     }
 
-    return put2(key, value, bucket);
+    return get1(key, bucket);
   }
 
-  protected V put2(K key, V value, int bucket) {
+  protected V get1(Object key, int bucket) {
     throw new UnsupportedOperationException("Implement me");
-  }
-
-  @SuppressWarnings("unchecked")
-  protected final V putReplace(K key, V value, int bucket) {
-    var oldValue = values[bucket];
-
-    keys[bucket] = key;
-
-    values[bucket] = value;
-
-    return (V) oldValue;
   }
 }

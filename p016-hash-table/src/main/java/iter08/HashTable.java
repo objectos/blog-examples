@@ -15,7 +15,7 @@
  */
 package iter08;
 
-public class HashTable<K, V> extends iter07.HashTable<K, V> {
+public class HashTable<K, V> extends iter07b.HashTable<K, V> {
   @Override
   public final String toString() {
     var sb = new StringBuilder();
