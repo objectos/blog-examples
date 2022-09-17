@@ -20,25 +20,18 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 
 public class HashTableTest {
-  @Test
-  public void iter06() {
+  @Test(description = """
+  get() method
+
+  - non-existing key should return null
+  """)
+  public void iter08() {
     var ht = new HashTable<Integer, String>();
 
-    assertEquals(ht.put(1, "One"), null);
-    assertEquals(ht.put(2, "Two"), null);
+    assertEquals(ht.get(1), null);
 
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 |   1 | One |
-      |   2 |   2 | Two |
-      |   3 |     |     |
-      +-----+-----+-----+
-      """
-    );
+    assertEquals(ht.put(1, "One"), null);
+
+    assertEquals(ht.get(1), "One");
   }
 }

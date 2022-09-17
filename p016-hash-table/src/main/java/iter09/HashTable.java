@@ -15,7 +15,7 @@
  */
 package iter09;
 
-public class HashTable<K, V> extends iter08.HashTable<K, V> {
+public class HashTable<K, V> extends iter08b.HashTable<K, V> {
   @Override
   protected V put2(K key, V value, int bucket) {
     for (var index = bucket + 1; index < keys.length; index++) {
