@@ -21,13 +21,8 @@ import org.testng.annotations.Test;
 import shared.Key;
 
 public class HashTableTest {
-  @Test(description = """
-  get() test case
-
-  - hash collision
-  - non existing key
-  """)
-  public void iter09() {
+  @Test
+  public void iter08() {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 3);
@@ -38,11 +33,18 @@ public class HashTableTest {
     assertEquals(ht.put(b, "bbb"), null);
     assertEquals(ht.put(c, "ccc"), null);
 
-    var d = new Key("DDD", 1);
-
-    assertEquals(ht.get(a), "aaa");
-    assertEquals(ht.get(b), "bbb");
-    assertEquals(ht.get(c), "ccc");
-    assertEquals(ht.get(d), null);
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 | BBB | bbb |
+      |   1 | CCC | ccc |
+      |   2 |     |     |
+      |   3 | AAA | aaa |
+      +-----+-----+-----+
+      """
+    );
   }
 }

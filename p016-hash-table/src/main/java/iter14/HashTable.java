@@ -13,34 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter08b;
+package iter14;
 
-public class HashTable<K, V> extends iter08.HashTable<K, V> {
+public class HashTable<K, V> extends iter13.HashTable<K, V> {
   @Override
-  public final String toString() {
-    var sb = new StringBuilder();
+  protected final int bucket(Object key) {
+    var hc = key.hashCode();
 
-    sb.append(
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      """);
+    var mask = keys.length - 1;
 
-    for (int idx = 0; idx < keys.length; idx++) {
-      var key = keys[idx];
-
-      if (key != null) {
-        var value = values[idx];
-
-        sb.append("| %3d | %3s | %3s |\n".formatted(idx, key, value));
-      } else {
-        sb.append("| %3d |     |     |\n".formatted(idx));
-      }
-    }
-
-    sb.append("+-----+-----+-----+\n");
-
-    return sb.toString();
+    return hc & mask;
   }
 }

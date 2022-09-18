@@ -22,12 +22,12 @@ import shared.Key;
 
 public class HashTableTest {
   @Test
-  public void iter08() {
+  public void iter07() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 3);
-    var b = new Key("BBB", 3);
-    var c = new Key("CCC", 0);
+    var a = new Key("AAA", 1);
+    var b = new Key("BBB", 1);
+    var c = new Key("CCC", 3);
 
     assertEquals(ht.put(a, "aaa"), null);
     assertEquals(ht.put(b, "bbb"), null);
@@ -39,10 +39,10 @@ public class HashTableTest {
       +-----+-----+-----+
       | idx | key | val |
       +-----+-----+-----+
-      |   0 | BBB | bbb |
-      |   1 | CCC | ccc |
-      |   2 |     |     |
-      |   3 | AAA | aaa |
+      |   0 |     |     |
+      |   1 | AAA | aaa |
+      |   2 | BBB | bbb |
+      |   3 | CCC | ccc |
       +-----+-----+-----+
       """
     );

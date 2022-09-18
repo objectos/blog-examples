@@ -15,25 +15,32 @@
  */
 package iter09;
 
-public class HashTable<K, V> extends iter08b.HashTable<K, V> {
+public class HashTable<K, V> extends iter08.HashTable<K, V> {
   @Override
-  protected V put2(K key, V value, int bucket) {
-    for (var index = bucket + 1; index < keys.length; index++) {
-      var existing = keys[index];
+  public final String toString() {
+    var sb = new StringBuilder();
 
-      if (existing == null) {
-        return putInsert(key, value, index);
-      }
+    sb.append(
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      """);
 
-      if (existing.equals(key)) {
-        return putReplace(key, value, index);
+    for (int idx = 0; idx < keys.length; idx++) {
+      var key = keys[idx];
+
+      if (key != null) {
+        var value = values[idx];
+
+        sb.append("| %3d | %3s | %3s |\n".formatted(idx, key, value));
+      } else {
+        sb.append("| %3d |     |     |\n".formatted(idx));
       }
     }
 
-    return put3(key, value, bucket);
-  }
+    sb.append("+-----+-----+-----+\n");
 
-  protected V put3(K key, V value, int bucket) {
-    throw new UnsupportedOperationException("Implement me");
+    return sb.toString();
   }
 }

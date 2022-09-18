@@ -13,19 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter08b;
+package iter14;
 
 import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
+import shared.Key;
 
 public class HashTableTest {
-  @Test
-  public void iter06() {
-    var ht = new HashTable<Integer, String>();
+  @Test(description = """
+  put() test case
 
-    assertEquals(ht.put(1, "One"), null);
-    assertEquals(ht.put(2, "Two"), null);
+  - refactor bucket() method
+  """)
+  public void iter11() {
+    var ht = new HashTable<Key, String>();
+
+    var a = new Key("AAA", 1);
+    var b = new Key("BBB", 2);
+    var c = new Key("CCC", 3);
+    var d = new Key("DDD", 4);
+
+    assertEquals(ht.put(a, "aaa"), null);
+    assertEquals(ht.put(b, "bbb"), null);
+    assertEquals(ht.put(c, "ccc"), null);
+    assertEquals(ht.put(d, "ddd"), null);
 
     assertEquals(
       ht.toString(),
@@ -34,9 +46,13 @@ public class HashTableTest {
       | idx | key | val |
       +-----+-----+-----+
       |   0 |     |     |
-      |   1 |   1 | One |
-      |   2 |   2 | Two |
-      |   3 |     |     |
+      |   1 | AAA | aaa |
+      |   2 | BBB | bbb |
+      |   3 | CCC | ccc |
+      |   4 | DDD | ddd |
+      |   5 |     |     |
+      |   6 |     |     |
+      |   7 |     |     |
       +-----+-----+-----+
       """
     );

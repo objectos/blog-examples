@@ -16,12 +16,59 @@
 package iter13;
 
 public class HashTable<K, V> extends iter12.HashTable<K, V> {
+  private final float loadFactor;
+
+  private int rehashSize;
+
+  public HashTable() {
+    super();
+
+    loadFactor = 0.75f;
+
+    rehashSize = (int) (keys.length * loadFactor);
+  }
+
   @Override
-  protected final int bucket(Object key) {
-    var hc = key.hashCode();
+  protected final V putInsert(K key, V value, int bucket) {
+    V result = super.putInsert(key, value, bucket);
 
-    var mask = keys.length - 1;
+    if (size > rehashSize) {
+      rehash();
+    }
 
-    return hc & mask;
+    return result;
+  }
+
+  @SuppressWarnings("unchecked")
+  private void rehash() {
+    var newLength = keys.length << 1;
+
+    if (newLength < 0) {
+      throw new OutOfMemoryError();
+    }
+
+    var oldKeys = keys;
+
+    var oldValues = values;
+
+    keys = new Object[newLength];
+
+    values = new Object[newLength];
+
+    rehashSize = (int) (keys.length * loadFactor);
+
+    size = 0;
+
+    for (int i = 0; i < oldKeys.length; i++) {
+      var key = oldKeys[i];
+
+      if (key == null) {
+        continue;
+      }
+
+      var value = oldValues[i];
+
+      put((K) key, (V) value);
+    }
   }
 }

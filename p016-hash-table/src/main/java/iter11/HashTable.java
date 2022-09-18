@@ -16,33 +16,24 @@
 package iter11;
 
 public class HashTable<K, V> extends iter10.HashTable<K, V> {
-  @SuppressWarnings("unchecked")
   @Override
-  protected final V get1(Object key, int bucket) {
-    for (var i = bucket + 1; i < keys.length; i++) {
-      var candidate = keys[i];
+  protected final V put3(K key, V value, int bucket) {
+    for (var index = 0; index < bucket; index++) {
+      var existing = keys[index];
 
-      if (candidate == null) {
-        return null;
+      if (existing == null) {
+        return putInsert(key, value, index);
       }
 
-      if (key.equals(candidate)) {
-        return (V) values[i];
-      }
-    }
-
-    for (var i = 0; i < bucket; i++) {
-      var candidate = keys[i];
-
-      if (candidate == null) {
-        return null;
-      }
-
-      if (key.equals(candidate)) {
-        return (V) values[i];
+      if (existing.equals(key)) {
+        return putReplace(key, value, index);
       }
     }
 
-    throw new AssertionError();
+    return put4(key, value, bucket);
+  }
+
+  private V put4(K key, V value, int bucket) {
+    throw new AssertionError("Load factor not implemented?");
   }
 }
