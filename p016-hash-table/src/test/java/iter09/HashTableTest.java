@@ -20,7 +20,15 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 
 public class HashTableTest {
-  @Test
+  @Test(description = """
+  toString() method
+
+  - renders an ascii table with columns:
+
+  1. array index
+  2. key toString()
+  3. value toString()
+  """)
   public void iter09() {
     var ht = new HashTable<Integer, String>();
 
