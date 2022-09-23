@@ -70,6 +70,7 @@ public class HashTableTest {
   put() method
 
   - handle hash collision
+  - value replacement
   - probe towards the end of array
   """)
   public void iter10b() {
