@@ -22,7 +22,7 @@ import shared.Key;
 
 public class HashTableTest {
   @Test
-  public void iter08() {
+  public void iter11() {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 3);

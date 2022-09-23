@@ -13,36 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter12;
+package shared;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 import org.testng.annotations.Test;
-import shared.Key;
 
-public class HashTableTest {
-  @Test(description = """
-  get() test case
+public class KeyTest {
+  @Test
+  public void iter10() {
+    var a = new Key("A", 123);
+    var b = new Key("B", 123);
 
-  - hash collision
-  - non existing key
-  """)
-  public void iter12() {
-    var ht = new HashTable<Key, String>();
-
-    var a = new Key("AAA", 3);
-    var b = new Key("BBB", 3);
-    var c = new Key("CCC", 0);
-
-    assertEquals(ht.put(a, "aaa"), null);
-    assertEquals(ht.put(b, "bbb"), null);
-    assertEquals(ht.put(c, "ccc"), null);
-
-    var d = new Key("DDD", 1);
-
-    assertEquals(ht.get(a), "aaa");
-    assertEquals(ht.get(b), "bbb");
-    assertEquals(ht.get(c), "ccc");
-    assertEquals(ht.get(d), null);
+    assertNotEquals(a, b);
+    assertEquals(a.hashCode(), 123);
+    assertEquals(b.hashCode(), 123);
   }
 }

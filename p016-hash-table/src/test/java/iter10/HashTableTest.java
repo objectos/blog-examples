@@ -21,17 +21,68 @@ import org.testng.annotations.Test;
 import shared.Key;
 
 public class HashTableTest {
-  @Test
-  public void iter07() {
+  @Test(description = """
+  put() method
+
+  - handle hash collision
+  - probe towards the end of array
+  """)
+  public void iter10a() {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 1);
     var b = new Key("BBB", 1);
-    var c = new Key("CCC", 3);
 
-    assertEquals(ht.put(a, "aaa"), null);
-    assertEquals(ht.put(b, "bbb"), null);
-    assertEquals(ht.put(c, "ccc"), null);
+    ht.put(a, "aaa");
+
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 |     |     |
+      |   1 | AAA | aaa |
+      |   2 |     |     |
+      |   3 |     |     |
+      +-----+-----+-----+
+      """
+    );
+
+    ht.put(b, "bbb");
+
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 |     |     |
+      |   1 | AAA | aaa |
+      |   2 | BBB | bbb |
+      |   3 |     |     |
+      +-----+-----+-----+
+      """
+    );
+  }
+
+  @Test(description = """
+  put() method
+
+  - handle hash collision
+  - probe towards the end of array
+  """)
+  public void iter10b() {
+    var ht = new HashTable<Key, String>();
+
+    var a = new Key("AAA", 1);
+    var b = new Key("BBB", 1);
+    var c = new Key("CCC", 1);
+
+    ht.put(a, "aaa");
+    ht.put(b, "bob");
+    ht.put(c, "ccc");
+    ht.put(b, "bbb");
 
     assertEquals(
       ht.toString(),
