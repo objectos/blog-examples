@@ -13,27 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter11;
+package iter12b;
 
-public class HashTable<K, V> extends iter10.HashTable<K, V> {
+public class HashTable<K, V> extends iter11.HashTable<K, V> {
+  @SuppressWarnings("unchecked")
   @Override
-  protected V put2(K key, V value, int bucket) {
-    for (var index = bucket + 1; index < keys.length; index++) {
-      var existing = keys[index];
+  protected final V get1(Object key, int bucket) {
+    for (var i = bucket + 1; i < keys.length; i++) {
+      var candidate = keys[i];
 
-      if (existing == null) {
-        return putInsert(key, value, index);
+      if (candidate == null) {
+        return null;
+      }
+
+      if (key.equals(candidate)) {
+        return (V) values[i];
       }
     }
 
-    for (var index = 0; index < bucket; index++) {
-      var existing = keys[index];
+    for (var i = 0; i < bucket; i++) {
+      var candidate = keys[i];
 
-      if (existing == null) {
-        return putInsert(key, value, index);
+      if (candidate == null) {
+        return null;
+      }
+
+      if (key.equals(candidate)) {
+        return (V) values[i];
       }
     }
 
-    throw new UnsupportedOperationException("Implement me");
+    throw new AssertionError();
   }
 }

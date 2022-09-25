@@ -18,6 +18,7 @@ package iter09;
 import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
+import shared.Key;
 
 public class HashTableTest {
   @Test(description = """
@@ -30,10 +31,13 @@ public class HashTableTest {
   3. value toString()
   """)
   public void iter09() {
-    var ht = new HashTable<Integer, String>();
+    var ht = new HashTable<Key, String>();
 
-    assertEquals(ht.put(1, "One"), null);
-    assertEquals(ht.put(2, "Two"), null);
+    var a = new Key("AAA", 4);
+    var c = new Key("CCC", 6);
+
+    ht.put(a, "aaa");
+    ht.put(c, "ccc");
 
     assertEquals(
       ht.toString(),
@@ -41,9 +45,9 @@ public class HashTableTest {
       +-----+-----+-----+
       | idx | key | val |
       +-----+-----+-----+
-      |   0 |     |     |
-      |   1 |   1 | One |
-      |   2 |   2 | Two |
+      |   0 | AAA | aaa |
+      |   1 |     |     |
+      |   2 | CCC | ccc |
       |   3 |     |     |
       +-----+-----+-----+
       """

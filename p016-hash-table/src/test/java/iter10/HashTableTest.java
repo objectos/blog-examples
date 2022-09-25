@@ -25,31 +25,17 @@ public class HashTableTest {
   put() method
 
   - handle hash collision
-  - probe towards the end of array
   """)
-  public void iter10a() {
+  public void iter10() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 1);
-    var b = new Key("BBB", 1);
+    var a = new Key("AAA", 2);
+    var b = new Key("BBB", 2);
+    var c = new Key("CCC", 2);
 
-    ht.put(a, "aaa");
-
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 |     |     |
-      |   3 |     |     |
-      +-----+-----+-----+
-      """
-    );
-
-    ht.put(b, "bbb");
+    assertEquals(ht.put(a, "aaa"), null);
+    assertEquals(ht.put(b, "bbb"), null);
+    assertEquals(ht.put(c, "ccc"), null);
 
     assertEquals(
       ht.toString(),
@@ -57,44 +43,10 @@ public class HashTableTest {
       +-----+-----+-----+
       | idx | key | val |
       +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 |     |     |
-      +-----+-----+-----+
-      """
-    );
-  }
-
-  @Test(description = """
-  put() method
-
-  - handle hash collision
-  - value replacement
-  - probe towards the end of array
-  """)
-  public void iter10b() {
-    var ht = new HashTable<Key, String>();
-
-    var a = new Key("AAA", 1);
-    var b = new Key("BBB", 1);
-    var c = new Key("CCC", 1);
-
-    ht.put(a, "aaa");
-    ht.put(b, "bob");
-    ht.put(c, "ccc");
-    ht.put(b, "bbb");
-
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 | CCC | ccc |
+      |   0 | CCC | ccc |
+      |   1 |     |     |
+      |   2 | AAA | aaa |
+      |   3 | BBB | bbb |
       +-----+-----+-----+
       """
     );
