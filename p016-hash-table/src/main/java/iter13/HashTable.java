@@ -15,7 +15,7 @@
  */
 package iter13;
 
-public class HashTable<K, V> extends iter12b.HashTable<K, V> {
+public class HashTable<K, V> extends iter12.HashTable<K, V> {
   private final float loadFactor;
 
   private int rehashSize;

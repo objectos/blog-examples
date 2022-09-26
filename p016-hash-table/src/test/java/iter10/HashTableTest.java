@@ -24,7 +24,8 @@ public class HashTableTest {
   @Test(description = """
   put() method
 
-  - handle hash collision
+  - handle hash collisions
+  - no value replacement
   """)
   public void iter10() {
     var ht = new HashTable<Key, String>();

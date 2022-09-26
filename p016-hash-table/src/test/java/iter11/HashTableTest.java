@@ -24,18 +24,19 @@ public class HashTableTest {
   @Test(description = """
   put() method
 
-  - handle hash collision
-  - probe from the start of the array
+  - hash collision
+  - value replacement
   """)
   public void iter11() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 3);
-    var b = new Key("BBB", 3);
+    var a = new Key("AAA", 2);
+    var b = new Key("BBB", 2);
     var c = new Key("CCC", 3);
 
     assertEquals(ht.put(a, "aaa"), null);
-    assertEquals(ht.put(b, "bbb"), null);
+    assertEquals(ht.put(b, "123"), null);
+    assertEquals(ht.put(b, "bbb"), "123", "\n" + ht.toString());
     assertEquals(ht.put(c, "ccc"), null);
 
     assertEquals(
@@ -44,12 +45,33 @@ public class HashTableTest {
       +-----+-----+-----+
       | idx | key | val |
       +-----+-----+-----+
-      |   0 | BBB | bbb |
-      |   1 | CCC | ccc |
-      |   2 |     |     |
-      |   3 | AAA | aaa |
+      |   0 | CCC | ccc |
+      |   1 |     |     |
+      |   2 | AAA | aaa |
+      |   3 | BBB | bbb |
       +-----+-----+-----+
       """
     );
+  }
+
+  @Test(enabled = false, description = """
+  put() method
+
+  - guaranteed to cause an infinite loop
+  """)
+  public void iter11_infiniteLoop() {
+    var ht = new HashTable<Key, String>();
+
+    var a = new Key("AAA", 2);
+    var b = new Key("BBB", 2);
+    var c = new Key("CCC", 2);
+    var d = new Key("DDD", 2);
+    var e = new Key("EEE", 2);
+
+    ht.put(a, "aaa");
+    ht.put(b, "bbb");
+    ht.put(c, "ccc");
+    ht.put(d, "ddd");
+    ht.put(e, "eee");
   }
 }

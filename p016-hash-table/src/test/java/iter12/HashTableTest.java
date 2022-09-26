@@ -22,33 +22,28 @@ import shared.Key;
 
 public class HashTableTest {
   @Test(description = """
-  put() method
+  get() test case
 
-  - handle hash collision
-  - probe from the start of the array
+  - hash collision
+  - non existing key
   """)
   public void iter12() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 1);
-    var b = new Key("BBB", 1);
+    var a = new Key("AAA", 3);
+    var b = new Key("BBB", 3);
+    var c = new Key("CCC", 3);
 
     assertEquals(ht.put(a, "aaa"), null);
-    assertEquals(ht.put(b, "replace-me"), null);
-    assertEquals(ht.put(b, "bbb"), "replace-me");
+    assertEquals(ht.put(b, "bbb"), null);
+    assertEquals(ht.put(c, "ccc"), null);
 
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 |     |     |
-      +-----+-----+-----+
-      """
-    );
+    assertEquals(ht.get(a), "aaa");
+    assertEquals(ht.get(b), "bbb");
+    assertEquals(ht.get(c), "ccc");
+
+    var d = new Key("DDD", 3);
+
+    assertEquals(ht.get(d), null);
   }
 }
