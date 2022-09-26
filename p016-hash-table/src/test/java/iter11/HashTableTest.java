@@ -32,11 +32,13 @@ public class HashTableTest {
 
     var a = new Key("AAA", 2);
     var b = new Key("BBB", 2);
-    var c = new Key("CCC", 3);
 
     assertEquals(ht.put(a, "aaa"), null);
     assertEquals(ht.put(b, "123"), null);
     assertEquals(ht.put(b, "bbb"), "123", "\n" + ht.toString());
+
+    var c = new Key("CCC", 3);
+
     assertEquals(ht.put(c, "ccc"), null);
 
     assertEquals(
