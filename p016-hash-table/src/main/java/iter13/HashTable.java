@@ -68,7 +68,7 @@ public class HashTable<K, V> extends iter12.HashTable<K, V> {
 
       var value = oldValues[i];
 
-      put((K) key, (V) value);
+      put0((K) key, (V) value);
     }
   }
 }

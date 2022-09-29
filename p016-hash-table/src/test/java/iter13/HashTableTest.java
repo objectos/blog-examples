@@ -28,7 +28,7 @@ public class HashTableTest {
   - should resize on 4th insert
   - no hash collisions
   """)
-  public void iter10() {
+  public void iter13() {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 1);

@@ -26,7 +26,7 @@ public class HashTableTest {
 
   - refactor bucket() method
   """)
-  public void iter11() {
+  public void iter14() {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 1);
