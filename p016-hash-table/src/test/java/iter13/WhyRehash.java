@@ -15,34 +15,39 @@
  */
 package iter13;
 
-import static org.testng.Assert.assertEquals;
-
-import org.testng.annotations.Test;
 import shared.Key;
 
-public class HashTableTest {
-  @Test(enabled = false, description = """
-  Why do we need a rehash operation?
-  """)
-  public void iter13() {
-    var ht = new HashTable<Key, String>();
-
+public class WhyRehash {
+  public static void main(String[] args) {
     var a = new Key("AAA", 1);
     var b = new Key("BBB", 12);
     var c = new Key("CCC", 23);
     var d = new Key("DDD", 34);
     var e = new Key("EEE", 45);
 
-    ht.put(a, "aaa");
-    ht.put(b, "bbb");
-    ht.put(c, "ccc");
-    ht.put(d, "ddd");
-    ht.put(e, "eee");
+    System.out.println("Capacity = 4");
 
-    assertEquals(ht.get(a), "aaa");
-    assertEquals(ht.get(b), "bbb");
-    assertEquals(ht.get(c), "ccc");
-    assertEquals(ht.get(d), "ddd");
-    assertEquals(ht.get(e), "eee");
+    bucket(a, 4);
+    bucket(b, 4);
+    bucket(c, 4);
+    bucket(d, 4);
+    bucket(e, 4);
+
+    System.out.println();
+    System.out.println("Capacity = 8");
+
+    bucket(a, 8);
+    bucket(b, 8);
+    bucket(c, 8);
+    bucket(d, 8);
+    bucket(e, 8);
+  }
+
+  private static void bucket(Object key, int capacity) {
+    int hc = key.hashCode();
+
+    var bucket = Math.floorMod(hc, capacity);
+
+    System.out.format("Key(%s, %d) = %d%n", key, hc, bucket);
   }
 }

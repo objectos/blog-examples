@@ -15,60 +15,25 @@
  */
 package iter13;
 
-public class HashTable<K, V> extends iter12.HashTable<K, V> {
-  private final float loadFactor;
+import java.util.Arrays;
 
-  private int rehashSize;
-
-  public HashTable() {
-    super();
-
-    loadFactor = 0.75f;
-
-    rehashSize = (int) (keys.length * loadFactor);
-  }
-
+final class HashTable<K, V> extends iter12.HashTable<K, V> {
   @Override
   protected final V putInsert(K key, V value, int bucket) {
     V result = super.putInsert(key, value, bucket);
 
-    if (size > rehashSize) {
-      rehash();
+    if (size == keys.length) {
+      resize();
     }
 
     return result;
   }
 
-  @SuppressWarnings("unchecked")
-  private void rehash() {
+  private void resize() {
     var newLength = keys.length << 1;
 
-    if (newLength < 0) {
-      throw new OutOfMemoryError();
-    }
+    keys = Arrays.copyOf(keys, newLength);
 
-    var oldKeys = keys;
-
-    var oldValues = values;
-
-    keys = new Object[newLength];
-
-    values = new Object[newLength];
-
-    rehashSize = (int) (keys.length * loadFactor);
-
-    size = 0;
-
-    for (int i = 0; i < oldKeys.length; i++) {
-      var key = oldKeys[i];
-
-      if (key == null) {
-        continue;
-      }
-
-      var value = oldValues[i];
-
-      put0((K) key, (V) value);
-    }
+    values = Arrays.copyOf(values, newLength);
   }
 }

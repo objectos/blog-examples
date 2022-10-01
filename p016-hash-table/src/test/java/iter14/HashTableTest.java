@@ -24,20 +24,20 @@ public class HashTableTest {
   @Test(description = """
   put() test case
 
-  - refactor bucket() method
+  - load factor = 0.75
+  - should resize on 4th insert
+  - no hash collisions
   """)
   public void iter14() {
     var ht = new HashTable<Key, String>();
 
-    var a = new Key("AAA", 1);
-    var b = new Key("BBB", 2);
+    var a = new Key("AAA", 2);
+    var b = new Key("BBB", 6);
     var c = new Key("CCC", 3);
-    var d = new Key("DDD", 4);
 
     assertEquals(ht.put(a, "aaa"), null);
     assertEquals(ht.put(b, "bbb"), null);
     assertEquals(ht.put(c, "ccc"), null);
-    assertEquals(ht.put(d, "ddd"), null);
 
     assertEquals(
       ht.toString(),
@@ -45,13 +45,32 @@ public class HashTableTest {
       +-----+-----+-----+
       | idx | key | val |
       +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
+      |   0 | CCC | ccc |
+      |   1 |     |     |
+      |   2 | AAA | aaa |
+      |   3 | BBB | bbb |
+      +-----+-----+-----+
+      """
+    );
+
+    var d = new Key("DDD", 8);
+
+    assertEquals(ht.put(d, "ddd"), null);
+    assertEquals(ht.size(), 4);
+
+    assertEquals(
+      ht.toString(),
+      """
+      +-----+-----+-----+
+      | idx | key | val |
+      +-----+-----+-----+
+      |   0 | DDD | ddd |
+      |   1 |     |     |
+      |   2 | AAA | aaa |
       |   3 | CCC | ccc |
-      |   4 | DDD | ddd |
+      |   4 |     |     |
       |   5 |     |     |
-      |   6 |     |     |
+      |   6 | BBB | bbb |
       |   7 |     |     |
       +-----+-----+-----+
       """
