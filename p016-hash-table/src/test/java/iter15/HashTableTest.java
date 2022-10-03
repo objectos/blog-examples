@@ -30,31 +30,21 @@ public class HashTableTest {
     var ht = new HashTable<Key, String>();
 
     var a = new Key("AAA", 1);
-    var b = new Key("BBB", 2);
-    var c = new Key("CCC", 3);
-    var d = new Key("DDD", 4);
+    var b = new Key("BBB", 12);
+    var c = new Key("CCC", 23);
+    var d = new Key("DDD", 34);
+    var e = new Key("EEE", 45);
 
-    assertEquals(ht.put(a, "aaa"), null);
-    assertEquals(ht.put(b, "bbb"), null);
-    assertEquals(ht.put(c, "ccc"), null);
-    assertEquals(ht.put(d, "ddd"), null);
+    ht.put(a, "aaa");
+    ht.put(b, "bbb");
+    ht.put(c, "ccc");
+    ht.put(d, "ddd");
+    ht.put(e, "eee");
 
-    assertEquals(
-      ht.toString(),
-      """
-      +-----+-----+-----+
-      | idx | key | val |
-      +-----+-----+-----+
-      |   0 |     |     |
-      |   1 | AAA | aaa |
-      |   2 | BBB | bbb |
-      |   3 | CCC | ccc |
-      |   4 | DDD | ddd |
-      |   5 |     |     |
-      |   6 |     |     |
-      |   7 |     |     |
-      +-----+-----+-----+
-      """
-    );
+    assertEquals(ht.get(a), "aaa");
+    assertEquals(ht.get(b), "bbb");
+    assertEquals(ht.get(c), "ccc");
+    assertEquals(ht.get(d), "ddd");
+    assertEquals(ht.get(e), "eee");
   }
 }
