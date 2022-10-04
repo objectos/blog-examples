@@ -18,21 +18,13 @@ package iter16;
 import java.util.Objects;
 
 public final class HashTable<K, V> {
-  private int size;
-
-  private final float loadFactor;
-
-  private int rehashSize;
-
   private Object[] keys = new Object[4];
 
   private Object[] values = new Object[4];
 
-  public HashTable() {
-    loadFactor = 0.75f;
+  private int size;
 
-    rehashSize = (int) (keys.length * loadFactor);
-  }
+  private int rehashSize = 3;
 
   @SuppressWarnings("unchecked")
   public final V get(Object key) {
@@ -88,8 +80,6 @@ public final class HashTable<K, V> {
 
   private int bucket(Object key) {
     var hc = key.hashCode();
-
-    hc = hc ^ (hc >>> 16);
 
     var mask = keys.length - 1;
 
@@ -196,9 +186,9 @@ public final class HashTable<K, V> {
 
   @SuppressWarnings("unchecked")
   private void rehash() {
-    var newLength = keys.length << 1;
+    var capacity = keys.length << 1;
 
-    if (newLength < 0) {
+    if (capacity < 0) {
       throw new OutOfMemoryError();
     }
 
@@ -206,11 +196,11 @@ public final class HashTable<K, V> {
 
     var oldValues = values;
 
-    keys = new Object[newLength];
+    keys = new Object[capacity];
 
-    values = new Object[newLength];
+    values = new Object[capacity];
 
-    rehashSize = (int) (keys.length * loadFactor);
+    rehashSize = (int) (capacity * 0.75);
 
     size = 0;
 
@@ -226,5 +216,4 @@ public final class HashTable<K, V> {
       put0((K) key, (V) value);
     }
   }
-
 }

@@ -47,4 +47,9 @@ public class WhenGrowTest {
       """
     );
   }
+
+  @Test
+  public void rehashSizeInitialValue() {
+    assertEquals((int) (0.75 * 4), 3);
+  }
 }

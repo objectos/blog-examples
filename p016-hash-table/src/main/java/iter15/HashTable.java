@@ -20,8 +20,6 @@ public class HashTable<K, V> extends iter14.HashTable<K, V> {
   protected final int bucket(Object key) {
     var hc = key.hashCode();
 
-    hc = hc ^ (hc >>> 16);
-
     var mask = keys.length - 1;
 
     return hc & mask;
