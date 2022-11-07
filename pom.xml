@@ -55,6 +55,7 @@
 		<module>p014-array-vm-limit</module>
 		<module>p015-safe-varargs</module>
 		<module>p016-hash-table</module>
+		<module>p021-generic-method-references</module>
 	</modules>
 
 	<build>
