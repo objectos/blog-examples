@@ -56,6 +56,7 @@
 		<module>p015-safe-varargs</module>
 		<module>p016-hash-table</module>
 		<module>p021-generic-method-references</module>
+		<module>p022-lwo-002</module>
 	</modules>
 
 	<build>
