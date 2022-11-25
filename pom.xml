@@ -36,8 +36,8 @@
 	</organization>
 
 	<properties>
-		<maven.compiler.source>18</maven.compiler.source>
-		<maven.compiler.target>18</maven.compiler.target>
+		<maven.compiler.source>19</maven.compiler.source>
+		<maven.compiler.target>19</maven.compiler.target>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -57,6 +57,7 @@
 		<module>p016-hash-table</module>
 		<module>p021-generic-method-references</module>
 		<module>p022-lwo-002</module>
+		<module>p023-ow-003</module>
 	</modules>
 
 	<build>
