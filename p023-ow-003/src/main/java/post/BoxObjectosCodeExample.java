@@ -33,7 +33,7 @@ public class BoxObjectosCodeExample extends JavaTemplate {
     autoImports();
 
     _class(
-      annotation(TypeAnnotation.class),
+      annotation(t(TypeAnnotation.class)),
       _public(), id("Box"),
 
       field(
