@@ -15,7 +15,6 @@
  */
 package post;
 
-import objectos.code.ClassName;
 import objectos.code.JavaTemplate;
 
 public class ChainedMethodsExample extends JavaTemplate {
@@ -47,7 +46,7 @@ public class ChainedMethodsExample extends JavaTemplate {
           invoke("build")
         )),
 
-        invoke(n(ClassName.of(System.class), "out"), "println", n("user"))
+        invoke(n(t(System.class), "out"), "println", n("user"))
       )
     );
   }

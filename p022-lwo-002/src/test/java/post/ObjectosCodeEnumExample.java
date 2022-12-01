@@ -15,9 +15,7 @@
  */
 package post;
 
-import objectos.code.ClassName;
 import objectos.code.JavaTemplate;
-import objectos.code.PackageName;
 
 public class ObjectosCodeEnumExample extends JavaTemplate {
 
@@ -28,11 +26,8 @@ public class ObjectosCodeEnumExample extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    var test = PackageName.of("test");
-    var iface = ClassName.of(test, "Iface");
-
     _enum(
-      _public(), id("Test"), _implements(iface),
+      _public(), id("Test"), _implements(t("test", "Iface")),
       enumConstant(id("A"), s("a")),
       enumConstant(id("B"), s("b")),
       field(_private(), _final(), t(String.class), id("value")),
