@@ -13,33 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package post.util;
 
-public class AnnotationsAreModifiers {
+import java.time.LocalDate;
 
-  class Example01 {
+public abstract class Super {
 
-    @Override
-    public final String toString() {
-      return "Annotations are just modifiers";
-    }
+  public class Inner {
 
-  }
-
-  class Example02 {
-
-    public @Override final String toString() {
-      return "They can go anywhere";
-    }
+    protected String name;
 
   }
 
-  class Example03 {
+  protected String description;
 
-    public final @Override String toString() {
-      return "I mean, really anywhere";
-    }
-
-  }
+  protected LocalDate optionalDate;
 
 }

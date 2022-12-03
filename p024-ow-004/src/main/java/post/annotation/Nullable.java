@@ -13,33 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package post.annotation;
 
-public class AnnotationsAreModifiers {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-  class Example01 {
-
-    @Override
-    public final String toString() {
-      return "Annotations are just modifiers";
-    }
-
-  }
-
-  class Example02 {
-
-    public @Override final String toString() {
-      return "They can go anywhere";
-    }
-
-  }
-
-  class Example03 {
-
-    public final @Override String toString() {
-      return "I mean, really anywhere";
-    }
-
-  }
-
-}
+@Retention(RetentionPolicy.SOURCE)
+@Target(ElementType.TYPE_USE)
+public @interface Nullable {}

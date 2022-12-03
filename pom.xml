@@ -58,6 +58,7 @@
 		<module>p021-generic-method-references</module>
 		<module>p022-lwo-002</module>
 		<module>p023-ow-003</module>
+		<module>p024-ow-004</module>
 	</modules>
 
 	<build>

@@ -15,31 +15,13 @@
  */
 package post;
 
-public class AnnotationsAreModifiers {
+import post.annotation.NotNull;
+import post.annotation.Nullable;
 
-  class Example01 {
-
-    @Override
-    public final String toString() {
-      return "Annotations are just modifiers";
-    }
-
+public class Example
+    extends
+    post.util.@Nullable Super.@NotNull Inner {
+  public Example(post.util.Super outer) {
+    outer.super();
   }
-
-  class Example02 {
-
-    public @Override final String toString() {
-      return "They can go anywhere";
-    }
-
-  }
-
-  class Example03 {
-
-    public final @Override String toString() {
-      return "I mean, really anywhere";
-    }
-
-  }
-
 }
