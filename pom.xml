@@ -59,6 +59,7 @@
 		<module>p022-lwo-002</module>
 		<module>p023-ow-003</module>
 		<module>p024-ow-004</module>
+		<module>p025-ow-005</module>
 	</modules>
 
 	<build>

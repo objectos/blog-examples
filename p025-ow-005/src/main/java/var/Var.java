@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package twitter;
+package var;
 
-public class Outer {
+public class Var {
+  public static void main(String[] args) {
+    var var = "My name is var";
 
-  class InnerClass {}
-
-  static class NotInnerClass {}
-
+    System.out.println(var);
+  }
 }
