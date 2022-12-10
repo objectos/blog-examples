@@ -13,12 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package var;
+package post.yield;
 
-public class Var {
-  public static void main(String[] args) {
-    var var = "My name is var";
+public class Contextual {
+  public static void main(String[] uses) {
+    var var = "Contextual keywords example";
 
-    System.out.println(var);
+    exports(var);
+  }
+
+  private static void exports(String record) {
+    System.out.println(record);
   }
 }
