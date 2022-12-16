@@ -26,7 +26,7 @@
 		<version>0.4.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>p021-generic-method-references</artifactId>
+	<artifactId>p026-objectos-weekly-006</artifactId>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 
