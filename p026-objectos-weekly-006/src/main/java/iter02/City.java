@@ -15,4 +15,4 @@
  */
 package iter02;
 
-public record State(String abbr) {}
+public record City(String name) {}

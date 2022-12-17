@@ -21,13 +21,13 @@ import objectos.util.GrowableList;
 
 public class Example {
   public static void main(String[] args) {
-    // three of the brazilian states
-    var abbrs = List.of("MS", "PA", "SP");
+    var cityNames = List.of(
+      "São Paulo", "Belém", "Rio de Janeiro");
 
-    var states = abbrs.stream()
-        .map(State::new) // <-- method ref
+    var cities = cityNames.stream()
+        .map(City::new) // <-- method ref
         .collect(Collectors.toCollection(GrowableList::new));
 
-    System.out.println(states);
+    System.out.println(cities);
   }
 }

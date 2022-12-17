@@ -13,28 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter02;
+package iter03;
 
-import java.util.List;
+import java.lang.System.Logger.Level;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import objectos.util.GrowableList;
 
 public class ExampleUsingLambda {
   public static void main(String[] args) {
-    var cityNames = List.of(
-      "São Paulo", "Belém", "Rio de Janeiro");
+    BiFunction<Function<Log, String>, Log, Payload> constructor;
+    constructor = (converter, item) -> {
+      return new <Log> Payload(converter, item);
+    };
 
-    Function<String, City> f;
-    f = (cityName) -> { return new City(cityName); };
+    Function<Log, String> converter;
+    converter = new LogConverter()::convert;
 
-    // Function<String, City> f;
-    // f = City::new;
+    Consumer<Log> emitter;
+    emitter = (log) -> {
+      var payload = constructor.apply(converter, log);
 
-    var cities = cityNames.stream()
-        .map(f)
-        .collect(Collectors.toCollection(GrowableList::new));
+      System.out.println(payload);
+    };
 
-    System.out.println(cities);
+    emitter.accept(new Log(111L, Level.INFO, "Hello world!"));
+    emitter.accept(new Log(222L, Level.ERROR, "Uh-oh"));
   }
 }
