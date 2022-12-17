@@ -23,9 +23,7 @@ import java.util.function.Function;
 public class ExampleUsingLambda {
   public static void main(String[] args) {
     BiFunction<Function<Log, String>, Log, Payload> constructor;
-    constructor = (converter, item) -> {
-      return new <Log> Payload(converter, item);
-    };
+    constructor = (converter, item) -> new <Log> Payload(converter, item);
 
     Function<Log, String> converter;
     converter = new LogConverter()::convert;

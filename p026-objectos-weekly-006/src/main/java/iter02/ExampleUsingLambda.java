@@ -26,7 +26,7 @@ public class ExampleUsingLambda {
       "São Paulo", "Belém", "Rio de Janeiro");
 
     Function<String, City> f;
-    f = (cityName) -> { return new City(cityName); };
+    f = (cityName) -> new City(cityName);
 
     // Function<String, City> f;
     // f = City::new;
