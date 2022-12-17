@@ -18,11 +18,15 @@ package iter01;
 import java.util.Objects;
 import java.util.Set;
 
-public class NonEmptySet<T> {
-  private final T defaultValue;
-  private final Set<T> set;
+public class NonEmptySet {
+  private final Object defaultValue;
+  private final Set<?> set;
 
-  public NonEmptySet(T defaultValue, Set<T> set) {
+  public NonEmptySet(String defaultValue) {
+    <String> this(defaultValue, Set.of());
+  }
+
+  public <T> NonEmptySet(T defaultValue, Set<T> set) {
     this.defaultValue = Objects.requireNonNull(defaultValue);
     this.set = Objects.requireNonNull(set);
   }
@@ -30,7 +34,7 @@ public class NonEmptySet<T> {
   @Override
   public String toString() {
     return set.isEmpty()
-        ? defaultValue.toString()
+        ? "[" + defaultValue.toString() + "]"
         : set.toString();
   }
 }

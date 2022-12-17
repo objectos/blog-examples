@@ -13,6 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package iter02;
 
-public record City(String name, State state) {}
+public record State(String abbr) {}

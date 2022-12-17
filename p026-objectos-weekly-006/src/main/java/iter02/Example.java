@@ -15,27 +15,19 @@
  */
 package iter02;
 
-import java.lang.Thread.State;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
+import objectos.util.GrowableList;
 
 public class Example {
   public static void main(String[] args) {
-    compiles();
+    // three of the brazilian states
+    var abbrs = List.of("MS", "PA", "SP");
 
-    doesNotCompile();
-  }
-
-  private static void compiles() {
-    var states = new <State> NonEmptySet(
-      State.NEW, Set.of(State.RUNNABLE, State.BLOCKED));
+    var states = abbrs.stream()
+        .map(State::new) // <-- method ref
+        .collect(Collectors.toCollection(GrowableList::new));
 
     System.out.println(states);
-  }
-
-  private static void doesNotCompile() {
-    //  var states = new <State> NonEmptySet(
-    //    "NEW", Set.of(State.RUNNABLE, State.BLOCKED));
-    //
-    //  System.out.println(states);
   }
 }

@@ -13,8 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package iter03;
 
-public record State(String abbr) {
-  public City newCity(String name) { return new City(name, this); }
+import java.util.function.Function;
+
+public record Payload(String data) {
+  public <T> Payload(Function<T, String> converter, T item) {
+    this(converter.apply(item));
+  }
 }

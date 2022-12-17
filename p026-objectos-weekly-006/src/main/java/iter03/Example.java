@@ -15,21 +15,27 @@
  */
 package iter03;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import objectos.util.GrowableList;
+import java.lang.System.Logger.Level;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class Example {
   public static void main(String[] args) {
-    var cityNames = List.of(
-      "São José dos Campos",
-      "São Paulo",
-      "Piracicaba");
+    BiFunction<Function<Log, String>, Log, Payload> constructor;
+    constructor = Payload::<Log> new;
 
-    var cities = cityNames.stream()
-        .map(City::new) // method ref
-        .collect(Collectors.toCollection(GrowableList::new));
+    Function<Log, String> converter;
+    converter = new LogConverter()::convert;
 
-    System.out.println(cities);
+    Consumer<Log> emitter;
+    emitter = (log) -> {
+      var payload = constructor.apply(converter, log);
+
+      System.out.println(payload);
+    };
+
+    emitter.accept(new Log(111L, Level.INFO, "Hello world!"));
+    emitter.accept(new Log(222L, Level.ERROR, "Uh-oh"));
   }
 }

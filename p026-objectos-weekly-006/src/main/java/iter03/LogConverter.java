@@ -13,24 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter04;
+package iter03;
 
-import java.util.Objects;
-import java.util.Set;
-
-public class NonEmptySet {
-  private final Object defaultValue;
-  private final Set<?> set;
-
-  public <T> NonEmptySet(T defaultValue, Set<T> set) {
-    this.defaultValue = Objects.requireNonNull(defaultValue);
-    this.set = Objects.requireNonNull(set);
-  }
-
-  @Override
-  public String toString() {
-    return set.isEmpty()
-        ? "[" + defaultValue.toString() + "]"
-        : set.toString();
+public class LogConverter {
+  public String convert(Log log) {
+    return """
+    {
+      "millis": %d,
+      "level": "%s",
+      "msg": "%s"
+    }""".formatted(log.millis(), log.level(), log.msg());
   }
 }

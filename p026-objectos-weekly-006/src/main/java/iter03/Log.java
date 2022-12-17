@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package iter03;
 
-public interface Json<T> {
+import java.lang.System.Logger.Level;
 
-  String toPretty(T value);
-
-}
+public record Log(long millis, Level level, String msg) {}

@@ -13,12 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package iter02;
 
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import objectos.util.GrowableList;
 
-public record Payload(String data) {
-  public <T> Payload(Function<T, String> converter, T item) {
-    this(converter.apply(item));
+public class ExampleUsingLambda {
+  public static void main(String[] args) {
+    // three of the brazilian states
+    var abbrs = List.of("MS", "PA", "SP");
+
+    Function<String, State> f;
+    f = (abbr) -> { return new State(abbr); };
+
+    // Function<String, State> f;
+    // f = State::new;
+
+    var states = abbrs.stream()
+        .map(f)
+        .collect(Collectors.toCollection(GrowableList::new));
+
+    System.out.println(states);
   }
 }
