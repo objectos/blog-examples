@@ -25,9 +25,9 @@ public class Service {
   @Target(ElementType.TYPE_USE) public @interface Started {}
   // @formatter:on
 
-  public void configure(@Started Service this) {}
+  public void configure() {}
 
-  public void execute(@Configured Service this) {}
+  public void start(@Configured Service this) {}
 
-  public void start() {}
+  public void stop(@Started Service this) {}
 }
