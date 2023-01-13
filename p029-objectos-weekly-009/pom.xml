@@ -26,7 +26,7 @@
 		<version>0.4.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>p028-objectos-weekly-008</artifactId>
+	<artifactId>p029-objectos-weekly-009</artifactId>
 	
 	<name>${project.groupId}:${project.artifactId}</name>
 	
