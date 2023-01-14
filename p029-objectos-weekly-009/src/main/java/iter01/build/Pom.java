@@ -17,15 +17,17 @@ package iter01.build;
 
 public abstract class Pom {
 
-  protected final void dependencies(Dependency... dependencies) {
+  protected final void dependencies(
+      Dependency... dependencies) {
     throw new UnsupportedOperationException(
-      "Just an example, no impl...");
+      "Implement me");
   }
 
   protected final Dependency dependency(
-      String groupId, String artifactId, String version) {
+      String groupId, String artifactId,
+      String version) {
     throw new UnsupportedOperationException(
-      "Just an example, no impl...");
+      "Implement me");
   }
 
   protected abstract void project();

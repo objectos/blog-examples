@@ -19,13 +19,15 @@ public abstract class Pom {
 
   protected interface Dependency {}
 
-  protected final void dependencies(Dependency... dependencies) {
+  protected final void dependencies(
+      Dependency... dependencies) {
     throw new UnsupportedOperationException(
       "Just an example, no impl...");
   }
 
   protected final Dependency dependency(
-      String groupId, String artifactId, String version) {
+      String groupId, String artifactId,
+      String version) {
     throw new UnsupportedOperationException(
       "Just an example, no impl...");
   }
