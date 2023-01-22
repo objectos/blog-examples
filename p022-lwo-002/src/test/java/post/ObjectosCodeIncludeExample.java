@@ -28,15 +28,15 @@ public class ObjectosCodeIncludeExample extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    _class(
-      id("Example"),
+    _class("Example");
+    body(
       include(this::generateFields)
     );
   }
 
   private void generateFields() {
     for (var fieldName : fieldNames) {
-      field(_int(), id(fieldName));
+      code(_int(), id(fieldName));
     }
   }
 

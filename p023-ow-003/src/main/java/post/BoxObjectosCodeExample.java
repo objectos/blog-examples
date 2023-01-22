@@ -28,27 +28,22 @@ public class BoxObjectosCodeExample extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    _package("com.example");
+    code(
+      _package("com.example"),
 
-    autoImports();
+      autoImports(),
 
-    _class(
-      annotation(t(TypeAnnotation.class)),
-      _public(), id("Box"),
+      at(t(TypeAnnotation.class)),
+      _public(), _class("Box"), body(
+        _private(), _final(), _int(), id("value"),
 
-      field(
-        _private(), _final(), _int(), id("value")
-      ),
+        _public(), constructor(_int(), id("value")), block(
+          _this(), id("value"), gets(), n("value")
+        ),
 
-      constructor(
-        _public(),
-        param(_int(), id("value")),
-        assign(n(_this(), "value"), n("value"))
-      ),
-
-      method(
-        _public(), _final(), _int(), id("get"),
-        _return(n("value"))
+        _public(), _final(), _int(), method("get"), block(
+          _return(), n("value")
+        )
       )
     );
   }
