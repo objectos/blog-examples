@@ -28,21 +28,21 @@ public class ChainedMethodsExample extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    code(
-      _package("com.example"),
-
-      autoImports(),
-
-      _public(), _class("ChainedMethods"), body(
-        _public(), _static(), _void(), method("main", t(t(String.class), dim()), id("args")), block(
-          _var(), id("user"), gets(), t(User.class), invoke("builder"), nl(),
-          invoke("id", i(123)), nl(),
-          invoke("login", s("foo")), nl(),
-          invoke("build"),
-
-          n(t(System.class), "out"), invoke("println", n("user"))
-        )
-      )
-    );
+    //    code(
+    //      _package("com.example"),
+    //
+    //      autoImports(),
+    //
+    //      _public(), _class("ChainedMethods"), body(
+    //        _public(), _static(), _void(), method("main", t(t(String.class), dim()), id("args")), block(
+    //          _var(), id("user"), gets(), t(User.class), invoke("builder"), nl(),
+    //          invoke("id", i(123)), nl(),
+    //          invoke("login", s("foo")), nl(),
+    //          invoke("build"),
+    //
+    //          n(t(System.class), "out"), invoke("println", n("user"))
+    //        )
+    //      )
+    //    );
   }
 }
