@@ -64,6 +64,7 @@
 		<module>p028-objectos-weekly-008</module>
 		<module>p029-objectos-weekly-009</module>
 		<module>p030-objectos-weekly-010</module>
+		<module>p031-objectos-weekly-011</module>
 	</modules>
 
 	<build>
