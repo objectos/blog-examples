@@ -20,7 +20,7 @@ public class InstanceInitializer {
   {
     System.out.println(
       """
-      Hi, I am a instance initializer.
+      Hi, I am an instance initializer.
 
       I am executed when an instance of the class is created.
 
