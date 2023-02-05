@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package iter1;
+package post;
 
+import java.util.Map;
 import objectos.code.JavaTemplate;
 
-public class HelloObjectosCode extends JavaTemplate {
+public class Types extends JavaTemplate {
 
   public static void main(String[] args) {
-    System.out.println(new HelloObjectosCode());
+    System.out.println(new Types());
   }
 
   @Override
@@ -30,11 +31,20 @@ public class HelloObjectosCode extends JavaTemplate {
 
     autoImports();
 
-    _public(); _class("HelloWorld"); body(
-      _public(), _static(), _void(),
-      method("main", t(t(String.class), dim()), id("args")), block(
-        t(System.class), n("out"), invoke("println", s("Hello, world!"))
-      )
+    _public(); _class("Types"); body(
+
+      t("com.example", "A"), id("samePkg"),
+
+      t("com.example.types", "A"), id("diffPkgSameName"),
+
+      t("com.example.types", "B"), id("diffPkgDiffName"),
+
+      t(t(Map.class), t(Integer.class), t(String.class)), id("parameterized"),
+
+      t(_int(), dim()), id("array"),
+
+      t(t(String.class), dim(), dim()), id("multiDimArray")
+
     );
   }
 
