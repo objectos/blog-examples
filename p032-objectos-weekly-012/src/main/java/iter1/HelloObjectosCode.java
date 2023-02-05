@@ -13,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package post;
+package iter1;
 
 import objectos.code.JavaTemplate;
 
-public class BoxObjectosCodeExample extends JavaTemplate {
-  public @interface TypeAnnotation {}
+public class HelloObjectosCode extends JavaTemplate {
 
   public static void main(String[] args) {
-    System.out.println(
-      new BoxObjectosCodeExample()
-    );
+    System.out.println(new HelloObjectosCode());
   }
 
   @Override
@@ -33,17 +30,12 @@ public class BoxObjectosCodeExample extends JavaTemplate {
 
     autoImports();
 
-    at(t(TypeAnnotation.class));
-    _public(); _class("Box"); body(
-      _private(), _final(), _int(), id("value"),
-
-      _public(), constructor(_int(), id("value")), block(
-        _this(), n("value"), gets(), n("value")
-      ),
-
-      _public(), _final(), _int(), method("get"), block(
-        _return(), n("value")
+    _public(); _class("HelloWorld"); body(
+      _public(), _static(), _void(),
+      method("main", t(t(String.class), dim()), id("args")), block(
+        t(System.class), n("out"), invoke("println", s("Hello, world!"))
       )
     );
   }
+
 }
