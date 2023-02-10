@@ -15,6 +15,9 @@
  */
 package code;
 
+import java.nio.file.OpenOption;
+import java.util.Map;
+import java.util.Set;
 import objectos.code.JavaTemplate;
 
 public class ParameterizedTypes extends JavaTemplate {
@@ -27,27 +30,22 @@ public class ParameterizedTypes extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    //    _package("objectos.example");
-    //
-    //    autoImports();
-    //
-    //    _class(
-    //      _public(), id("ParameterizedTypesExample"),
-    //
-    //      field(
-    //        t(t("java.util", "Map"), t(String.class), t("java.lang", "Integer")),
-    //        id("map")
-    //      ),
-    //
-    //      field(t(t(Set.class), t(OpenOption.class)), id("set")),
-    //
-    //      field(
-    //        t(
-    //          t("java.util", "List"),
-    //          t(t(Map.class), t(String.class), t(String.class))
-    //        ), id("list")
-    //      )
-    //    );
+    _package("objectos.example");
+
+    autoImports();
+
+    _public();
+    _class("ParameterizedTypesExample");
+    body(
+      t(t("java.util", "Map"), t(String.class), t("java.lang", "Integer")), id("map"),
+
+      t(t(Set.class), t(OpenOption.class)), id("set"),
+
+      t(
+        t("java.util", "List"),
+        t(t(Map.class), t(String.class), t(String.class))
+      ), id("list")
+    );
   }
 
 }

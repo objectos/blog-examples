@@ -26,24 +26,24 @@ public class ObjectosCodeEnumExample extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    //    code(
-    //      _public(), _enum("Test"), _implements(), t("test", "Iface"), body(
-    //        enumConstant("A", s("a")),
-    //
-    //        enumConstant("B", s("b")),
-    //
-    //        _private(), _final(), t(String.class), field("value"),
-    //
-    //        _private(), constructor(t(String.class), id("value")), block(
-    //          _this(), n("value"), gets(), n("value")
-    //        ),
-    //
-    //        at(t(Override.class)),
-    //        _public(), _final(), t(String.class), method("toString"), block(
-    //          _return(), n("value")
-    //        )
-    //      )
-    //    );
+    code(
+      _public(), _enum("Test"), _implements(), t("test", "Iface"), body(
+        enumConstant("A", s("a")),
+
+        enumConstant("B", s("b")),
+
+        _private(), _final(), t(String.class), id("value"),
+
+        _private(), constructor(t(String.class), id("value")), block(
+          _this(), n("value"), gets(), n("value")
+        ),
+
+        at(t(Override.class)),
+        _public(), _final(), t(String.class), method("toString"), block(
+          _return(), n("value")
+        )
+      )
+    );
   }
 
 }

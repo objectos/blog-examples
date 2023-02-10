@@ -27,17 +27,15 @@ public class NestedClassObjectosCodeExample extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    //    _package("com.example");
-    //
-    //    autoImports();
-    //
-    //    _class(
-    //      _public(), id("Outer"),
-    //
-    //      _class(
-    //        id("Inner")
-    //      )
-    //    );
+    _package("com.example");
+
+    autoImports();
+
+    _public();
+    _class("Outer");
+    body(
+      _class("Inner"), body()
+    );
   }
 
 }

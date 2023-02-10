@@ -15,6 +15,7 @@
  */
 package code;
 
+import java.util.Collections;
 import objectos.code.JavaTemplate;
 
 public class TypeParams extends JavaTemplate {
@@ -27,25 +28,24 @@ public class TypeParams extends JavaTemplate {
 
   @Override
   protected final void definition() {
-    //    _package("objectos.example");
-    //
-    //    autoImports();
-    //
-    //    _class(
-    //      _public(), _final(), id("Util"),
-    //
-    //      constructor(_private()),
-    //
-    //      method(
-    //        _public(), _static(),
-    //        tparam("T", t("com.example", "Foo")),
-    //        _void(),
-    //        id("sort"),
-    //        param(t(t("java.util", "List"), tvar("T")), id("list")),
-    //
-    //        invoke(t(Collections.class), "sort", n("list"))
-    //      )
-    //    );
+    _package("objectos.example");
+
+    autoImports();
+
+    _public();
+    _final();
+    _class("Util");
+    body(
+      _private(), constructor(), block(),
+
+      _public(), _static(),
+      tparam("T", t("com.example", "Foo")),
+      _void(),
+      method("sort", t(t("java.util", "List"), tvar("T")), id("list")),
+      block(
+        t(Collections.class), invoke("sort", n("list"))
+      )
+    );
   }
 
 }
