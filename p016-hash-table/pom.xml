@@ -22,7 +22,7 @@
 	<parent>
 		<groupId>br.com.objectos.www</groupId>
 		<artifactId>blog-examples</artifactId>
-		<version>0.4.3.1-SNAPSHOT</version>
+		<version>0.4.4-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>p016-hash-table</artifactId>
