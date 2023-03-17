@@ -33,11 +33,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
-			<artifactId>objectos-html</artifactId>
+			<artifactId>objectos-code</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>objectos-html</artifactId>
 		</dependency>
 	</dependencies>
 

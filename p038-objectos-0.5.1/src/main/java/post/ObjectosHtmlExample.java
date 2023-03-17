@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package html;
+package post;
 
 import java.io.IOException;
 import java.nio.file.Path;
