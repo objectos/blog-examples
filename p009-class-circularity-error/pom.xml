@@ -23,7 +23,7 @@
 	<parent>
 		<groupId>br.com.objectos.www</groupId>
 		<artifactId>blog-examples</artifactId>
-		<version>0.5.2-SNAPSHOT</version>
+		<version>0.5.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>p009-class-circularity-error</artifactId>
