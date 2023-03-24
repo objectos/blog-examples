@@ -30,6 +30,24 @@
 
 	<name>${project.groupId}:${project.artifactId}</name>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>br.com.objectos</groupId>
+				<artifactId>objectos-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openjdk.jol</groupId>
+				<artifactId>jol-core</artifactId>
+				<version>0.16</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
         <dependency>
             <groupId>org.openjdk.jol</groupId>

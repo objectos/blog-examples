@@ -68,6 +68,7 @@
 		<module>p032-objectos-weekly-012</module>
 		<module>p033-objectos-0.4.1</module>
 		<module>p038-objectos-0.5.1</module>
+		<module>p039-objectos-0.5.2</module>
 	</modules>
 
 	<build>
@@ -121,23 +122,5 @@ limitations under the License.
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>br.com.objectos</groupId>
-				<artifactId>objectos-bom</artifactId>
-				<version>${project.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.openjdk.jol</groupId>
-				<artifactId>jol-core</artifactId>
-				<version>0.16</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 </project>
