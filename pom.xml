@@ -69,6 +69,7 @@
 		<module>p033-objectos-0.4.1</module>
 		<module>p038-objectos-0.5.1</module>
 		<module>p039-objectos-0.5.2</module>
+		<module>p040-objectos-0.5.3</module>
 	</modules>
 
 	<build>
