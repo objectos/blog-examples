@@ -23,7 +23,7 @@
 	<parent>
 		<groupId>br.com.objectos.www</groupId>
 		<artifactId>blog-examples</artifactId>
-		<version>0.5.4-SNAPSHOT</version>
+		<version>0.6.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>p011-generic-constructors</artifactId>
