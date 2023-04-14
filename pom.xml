@@ -71,6 +71,7 @@
 		<module>p039-objectos-0.5.2</module>
 		<module>p040-objectos-0.5.3</module>
 		<module>p041-objectos-0.6.0</module>
+		<module>p042-labeled-statements</module>
 	</modules>
 
 	<build>
