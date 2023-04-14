@@ -32,7 +32,7 @@ final class Library {
     addDefaultValues(values);
   }
 
-  @SuppressWarnings({"rawtypes", "unchecked"})
+  @SuppressWarnings({"unchecked"})
   private static void addDefaultValues(Object[] values) {
     for (Object input : values) {
       if (input instanceof Map map) {
