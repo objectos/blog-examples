@@ -6,9 +6,7 @@
 package shared;
 
 public class Types {
-
   public class Inner {}
 
   public static class StaticNested {}
-
 }

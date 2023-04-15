@@ -8,12 +8,10 @@ package thread;
 import shared.Annotations.One;
 
 public class Example2 {
-
   // does not compile!
-  // public @A shared.Types.Inner a;
+  // public @One shared.Types.Inner a;
 
   public shared.Types.@One Inner a;
 
   static class Inner {}
-
 }

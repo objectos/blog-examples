@@ -6,16 +6,16 @@
 package thread;
 
 import shared.Annotations.One;
-import shared.Annotations.Two;
+//import shared.Annotations.Two;
 
 public class Example4 {
+  public shared.Types.@One StaticNested a;
 
-  public shared.Types.@One Inner a;
+  // does not compile!
+  //public shared.@One Types.StaticNested b;
 
-  public shared.@One Types.Inner b;
-
-  public shared.@One Types.@Two Inner c;
+  // does not compile!
+  //public shared.@One Types.@Two StaticNested c;
 
   static class Inner {}
-
 }

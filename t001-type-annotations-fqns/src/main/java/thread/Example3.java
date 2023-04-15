@@ -9,7 +9,6 @@ import shared.Annotations.One;
 import shared.Annotations.Two;
 
 public class Example3 {
-
   public shared.Types.@One Inner a;
 
   public shared.@One Types.Inner b;
@@ -17,5 +16,4 @@ public class Example3 {
   public shared.@One Types.@Two Inner c;
 
   static class Inner {}
-
 }
