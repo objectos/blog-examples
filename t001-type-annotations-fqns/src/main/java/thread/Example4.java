@@ -17,5 +17,5 @@ public class Example4 {
   // does not compile!
   //public shared.@One Types.@Two StaticNested c;
 
-  static class Inner {}
+  static class StaticNested {}
 }
