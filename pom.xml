@@ -72,8 +72,9 @@
 		<module>p040-objectos-0.5.3</module>
 		<module>p041-objectos-0.6.0</module>
 		<module>p042-labeled-statements</module>
-		<module>t001-type-annotations-fqns</module>
 		<module>p043-empty-statement</module>
+		<module>t001-type-annotations-fqns</module>
+		<module>t002-new-com-argumentos-tipo</module>
 	</modules>
 
 	<build>
