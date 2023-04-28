@@ -75,6 +75,8 @@
 		<module>p043-empty-statement</module>
 		<module>t001-type-annotations-fqns</module>
 		<module>t002-new-com-argumentos-tipo</module>
+		<module>t003-instrucao-rotulada</module>
+		<module>p044-anotacoes-java</module>
 	</modules>
 
 	<build>

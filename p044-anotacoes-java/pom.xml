@@ -26,8 +26,8 @@
 		<artifactId>blog-examples</artifactId>
 		<version>0.6.3-SNAPSHOT</version>
 	</parent>
-	
-	<artifactId>p043-empty-statement</artifactId>
+
+	<artifactId>p044-anotacoes-java</artifactId>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 </project>
