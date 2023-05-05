@@ -24,10 +24,18 @@
 	<parent>
 		<groupId>br.com.objectos.www</groupId>
 		<artifactId>blog-examples</artifactId>
-		<version>0.6.4-SNAPSHOT</version>
+		<version>0.6.5-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>p045-polimorfismo</artifactId>
 	<name>${project.groupId}:${project.artifactId}</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.7.1</version>
+		</dependency>
+	</dependencies>
 
 </project>

@@ -21,7 +21,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.objectos.www</groupId>
 	<artifactId>blog-examples</artifactId>
-	<version>0.6.4-SNAPSHOT</version>
+	<version>0.6.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>

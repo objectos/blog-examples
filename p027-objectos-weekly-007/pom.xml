@@ -23,7 +23,7 @@
 	<parent>
 		<groupId>br.com.objectos.www</groupId>
 		<artifactId>blog-examples</artifactId>
-		<version>0.6.4-SNAPSHOT</version>
+		<version>0.6.5-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>p027-objectos-weekly-007</artifactId>

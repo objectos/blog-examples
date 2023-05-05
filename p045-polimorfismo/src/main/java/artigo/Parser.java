@@ -15,23 +15,10 @@
  */
 package artigo;
 
-import java.util.ArrayList;
+public class Parser {
 
-public class Blog01 {
-  public static void main(String[] args) {
-    var etiquetas = new ArrayList<String>();
-
-    etiquetas.add("java");
-    etiquetas.add("algoritmos");
-    etiquetas.add("java");
-    etiquetas.add("programação");
-
-    var artigo = new ArtigoBuilder()
-        .titulo("Exemplo 01")
-        .data(2023, 5, 5)
-        .etiquetas(etiquetas)
-        .build();
-
-    System.out.println(artigo);
+  public int[] parse(String string) {
+    return null;
   }
+
 }

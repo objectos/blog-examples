@@ -15,22 +15,29 @@
  */
 package artigo;
 
-public class Intro {
-  public static abstract class Animal {
-    public abstract void emitirSom();
+import static org.testng.Assert.assertEquals;
+
+import org.testng.annotations.Test;
+
+public class ParserTest {
+
+  @Test(enabled = false, description = """
+  Testar o caminho feliz
+  - entrada válida
+  - entrada formatada c/ espaço depois da vírgula
+  """)
+  public void testCase01() {
+    var parser = new Parser();
+
+    int[] res = parser.parse("4, 8, 15, 16, 23, 42");
+
+    assertEquals(res.length, 6);
+    assertEquals(res[0], 4);
+    assertEquals(res[1], 8);
+    assertEquals(res[2], 15);
+    assertEquals(res[3], 16);
+    assertEquals(res[4], 23);
+    assertEquals(res[5], 42);
   }
 
-  public static class Cachorro extends Animal {
-    @Override
-    public void emitirSom() {
-      System.out.println("Au au");
-    }
-  }
-
-  public static class Gato extends Animal {
-    @Override
-    public void emitirSom() {
-      System.out.println("Miau");
-    }
-  }
 }
