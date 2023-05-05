@@ -27,7 +27,7 @@
 		<version>0.6.4-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>t003-instrucao-rotulada</artifactId>
+	<artifactId>t004-try-with-resources</artifactId>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 </project>

@@ -27,7 +27,7 @@
 		<version>0.6.4-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>t003-instrucao-rotulada</artifactId>
+	<artifactId>p045-polimorfismo</artifactId>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 </project>

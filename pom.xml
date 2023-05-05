@@ -73,10 +73,12 @@
 		<module>p041-objectos-0.6.0</module>
 		<module>p042-labeled-statements</module>
 		<module>p043-empty-statement</module>
+		<module>p044-anotacoes-java</module>
+		<module>p045-polimorfismo</module>
 		<module>t001-type-annotations-fqns</module>
 		<module>t002-new-com-argumentos-tipo</module>
 		<module>t003-instrucao-rotulada</module>
-		<module>p044-anotacoes-java</module>
+		<module>t004-try-with-resources</module>
 	</modules>
 
 	<build>
