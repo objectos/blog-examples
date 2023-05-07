@@ -27,7 +27,7 @@
 		<version>0.6.5-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>p045-polimorfismo</artifactId>
+	<artifactId>p045-testng</artifactId>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<dependencies>

@@ -74,7 +74,7 @@
 		<module>p042-labeled-statements</module>
 		<module>p043-empty-statement</module>
 		<module>p044-anotacoes-java</module>
-		<module>p045-polimorfismo</module>
+		<module>p045-testng</module>
 		<module>t001-type-annotations-fqns</module>
 		<module>t002-new-com-argumentos-tipo</module>
 		<module>t003-instrucao-rotulada</module>

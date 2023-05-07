@@ -15,10 +15,17 @@
  */
 package artigo;
 
-public class Parser {
+import org.testng.annotations.Factory;
 
-  public int[] parse(String string) {
-    return null;
+public class Exemplo03Objectos {
+
+  @Factory
+  public Object[] factory() {
+    var tester = Tester.OBJECTOS;
+
+    return new Object[] {
+        new Exemplo03(tester)
+    };
   }
 
 }

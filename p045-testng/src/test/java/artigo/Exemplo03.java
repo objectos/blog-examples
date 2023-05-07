@@ -15,29 +15,29 @@
  */
 package artigo;
 
-import static org.testng.Assert.assertEquals;
-
 import org.testng.annotations.Test;
 
-public class ParserTest {
+public class Exemplo03 {
 
-  @Test(enabled = false, description = """
+  Tester tester = Tester.OBJECTOS;
+
+  public Exemplo03() {}
+
+  Exemplo03(Tester tester) {
+    this.tester = tester;
+  }
+
+  @Test(description = """
   Testar o caminho feliz
   - entrada válida
   - entrada formatada c/ espaço depois da vírgula
   """)
-  public void testCase01() {
-    var parser = new Parser();
+  public void teste() {
+    var entrada = "4, 8, 15, 16, 23, 42";
 
-    int[] res = parser.parse("4, 8, 15, 16, 23, 42");
+    var saida = new int[] {4, 8, 15, 16, 23, 42};
 
-    assertEquals(res.length, 6);
-    assertEquals(res[0], 4);
-    assertEquals(res[1], 8);
-    assertEquals(res[2], 15);
-    assertEquals(res[3], 16);
-    assertEquals(res[4], 23);
-    assertEquals(res[5], 42);
+    tester.test(entrada, saida);
   }
 
 }
