@@ -27,7 +27,7 @@
 		<version>0.6.5-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>t004-try-with-resources</artifactId>
+	<artifactId>t004-twitter</artifactId>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 </project>

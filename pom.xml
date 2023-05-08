@@ -78,7 +78,7 @@
 		<module>t001-type-annotations-fqns</module>
 		<module>t002-new-com-argumentos-tipo</module>
 		<module>t003-instrucao-rotulada</module>
-		<module>t004-try-with-resources</module>
+		<module>t004-twitter</module>
 	</modules>
 
 	<build>
