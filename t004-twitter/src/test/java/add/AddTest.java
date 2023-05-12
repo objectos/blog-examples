@@ -13,37 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package equals;
+package add;
 
-import java.util.Objects;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
-public class Exemplos {
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.testng.annotations.Test;
 
-  public static class User {
-    final String login;
+public class AddTest {
 
-    final String name;
+  @Test
+  public void list() {
+    var letras = new ArrayList<String>();
 
-    public User(String login, String name) {
-      this.login = Objects.requireNonNull(login);
-      this.name = name;
-    }
-
-    public final boolean hasName(String name) {
-      return Objects.equals(this.name, name);
-    }
-
-    public final boolean isFulano() {
-      return "Fulano".equals(name);
-    }
-
-    public final boolean isRoot() {
-      return login.equals("root");
-    }
+    assertTrue(letras.add("A"));
+    assertTrue(letras.add("B"));
+    assertTrue(letras.add("B"));
+    assertTrue(letras.add("C"));
   }
 
-  public void notNull() {
+  @Test
+  public void set() {
+    var letras = new HashSet<String>();
 
+    assertTrue(letras.add("A"));
+    assertTrue(letras.add("B"));
+    assertFalse(letras.add("B"));
+    assertTrue(letras.add("C"));
   }
 
 }

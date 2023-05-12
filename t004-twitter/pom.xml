@@ -30,4 +30,12 @@
 	<artifactId>t004-twitter</artifactId>
 	<name>${project.groupId}:${project.artifactId}</name>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.7.1</version>
+		</dependency>
+	</dependencies>
+
 </project>
