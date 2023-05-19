@@ -16,16 +16,22 @@
 package artigo;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.AnnotatedArrayType;
 
 public class Item03 {
 
+  @Retention(RetentionPolicy.RUNTIME)
   @Target(ElementType.TYPE_USE)
   @interface A {}
 
+  @Retention(RetentionPolicy.RUNTIME)
   @Target(ElementType.TYPE_USE)
   @interface B {}
 
+  @Retention(RetentionPolicy.RUNTIME)
   @Target(ElementType.TYPE_USE)
   @interface C {}
 
@@ -51,6 +57,49 @@ public class Item03 {
 
   public class Exemplo04 {
     public @C int @A [] @B [] a;
+  }
+
+  public static class Exemplo05 {
+    public @C int @A [] @B [] a;
+  }
+
+  public static void main(String[] args) throws NoSuchFieldException, SecurityException {
+    int[][] array = {
+        {1, 2, 3, 4, 5},
+        {6, 7, 8, 9}
+    };
+
+    int[][] tipo01 = array;
+    int[] tipo02 = tipo01[1];
+    int tipo03 = tipo02[3];
+
+    System.out.println(tipo03);
+
+    var field = Exemplo05.class.getField("a");
+
+    var type01 = (AnnotatedArrayType) field.getAnnotatedType();
+
+    System.out.println(type01);
+
+    for (var anno : type01.getAnnotations()) {
+      System.out.println(anno);
+    }
+
+    var type02 = (AnnotatedArrayType) type01.getAnnotatedGenericComponentType();
+
+    System.out.println(type02);
+
+    for (var anno : type02.getAnnotations()) {
+      System.out.println(anno);
+    }
+
+    var type03 = type02.getAnnotatedGenericComponentType();
+
+    System.out.println(type03);
+
+    for (var anno : type03.getAnnotations()) {
+      System.out.println(anno);
+    }
   }
 
 }
