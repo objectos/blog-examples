@@ -15,25 +15,26 @@
  */
 package jep447;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
-public class Problema02 {
+public class GitObjectId {
 
-  public static class Super {
-    final List<Integer> values;
+  private final byte[] value;
 
-    public Super() {
-      values = new ArrayList<>();
+  public GitObjectId(byte[] value) {
+    this.value = Objects.requireNonNull(value, "value == null");
+
+    if (this.value.length != 20) {
+      throw new IllegalArgumentException();
     }
   }
 
-  public static class Sub extends Super {
-    public Sub() {
-      // values = new ArrayList<>();
+  public GitObjectId(String sha1) {
+    this(parse(sha1));
+  }
 
-      // super();
-    }
+  private static byte[] parse(String sha1) throws IllegalArgumentException {
+    return null;
   }
 
 }

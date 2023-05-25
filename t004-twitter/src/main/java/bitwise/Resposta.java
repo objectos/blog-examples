@@ -13,27 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jep447;
+package bitwise;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Problema02 {
-
-  public static class Super {
-    final List<Integer> values;
-
-    public Super() {
-      values = new ArrayList<>();
-    }
-  }
-
-  public static class Sub extends Super {
-    public Sub() {
-      // values = new ArrayList<>();
-
-      // super();
-    }
-  }
-
-}
+public record Resposta(boolean opcaoA,
+                       boolean opcaoB,
+                       boolean opcaoC,
+                       boolean opcaoD) {}

@@ -13,27 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jep447;
+package stacktrace;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Problema02 {
-
-  public static class Super {
-    final List<Integer> values;
-
-    public Super() {
-      values = new ArrayList<>();
-    }
+public class Exemplo06 {
+  public static void main(String[] args) {
+    Print.stackTrace(new Exception());
+    new Exemplo06().a();
   }
 
-  public static class Sub extends Super {
-    public Sub() {
-      // values = new ArrayList<>();
-
-      // super();
-    }
+  public void a() {
+    Print.stackTrace(new Exception());
+    b();
   }
 
+  public void b() {
+    Print.stackTrace(new Exception());
+    c();
+  }
+
+  public void c() {
+    Print.stackTrace(new Exception());
+  }
 }

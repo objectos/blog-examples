@@ -13,27 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jep447;
+package stacktrace;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Exemplo01 {
+  public static void main(String[] args) {
+    var currentThread = Thread.currentThread();
 
-public class Problema02 {
-
-  public static class Super {
-    final List<Integer> values;
-
-    public Super() {
-      values = new ArrayList<>();
-    }
+    System.out.format("Meu nome é %s%n", currentThread.getName());
   }
-
-  public static class Sub extends Super {
-    public Sub() {
-      // values = new ArrayList<>();
-
-      // super();
-    }
-  }
-
 }
