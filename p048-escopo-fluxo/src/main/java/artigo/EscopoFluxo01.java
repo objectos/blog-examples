@@ -13,28 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package interrupted;
+package artigo;
 
-import java.util.concurrent.BlockingQueue;
+import java.time.LocalDate;
 
-public class WebServer extends Thread {
-  private final BlockingQueue<String> queue;
+public class EscopoFluxo01 {
+  static void printIfString(Object o) {
+    if (!(o instanceof String s)) {
+      return;
+    }
 
-  public WebServer(BlockingQueue<String> queue) {
-    super("SERVER");
-    this.queue = queue;
+    System.out.println(s);
   }
 
-  @Override
-  public void run() {
-    while (true) {
-      try {
-        Print.msg(queue.take());
-      } catch (InterruptedException e) {
-        Print.msg("Interrupção recebida");
-
-        return;
-      }
-    }
+  public static void main(String[] args) {
+    printIfString("Olá");
+    printIfString(LocalDate.now());
+    printIfString("Mundo!");
   }
 }

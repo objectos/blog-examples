@@ -77,6 +77,7 @@
 		<module>p045-testng</module>
 		<module>p046-metodos-java</module>
 		<module>p047-classe-interna</module>
+		<module>p048-escopo-fluxo</module>
 		<module>t001-type-annotations-fqns</module>
 		<module>t002-new-com-argumentos-tipo</module>
 		<module>t003-instrucao-rotulada</module>

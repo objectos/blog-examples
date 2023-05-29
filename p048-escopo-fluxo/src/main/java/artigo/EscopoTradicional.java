@@ -13,28 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package interrupted;
+package artigo;
 
-import java.util.concurrent.BlockingQueue;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Future;
 
-public class WebServer extends Thread {
-  private final BlockingQueue<String> queue;
+public class EscopoTradicional {
 
-  public WebServer(BlockingQueue<String> queue) {
-    super("SERVER");
-    this.queue = queue;
-  }
+  public interface Foo {}
 
-  @Override
-  public void run() {
-    while (true) {
-      try {
-        Print.msg(queue.take());
-      } catch (InterruptedException e) {
-        Print.msg("Interrupção recebida");
+  public void instrucaoFor(List<String> elements) {
+    var result = new ArrayList<Future<Foo>>();
 
-        return;
-      }
+    for (var element : elements) {
+      var future = submit(element);
+
+      result.add(future);
     }
+
+    // erro de compilação
+    // System.out.println(element);
   }
+
+  private Future<Foo> submit(String element) { return null; }
+
 }
