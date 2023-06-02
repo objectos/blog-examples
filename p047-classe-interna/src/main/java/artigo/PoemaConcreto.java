@@ -26,6 +26,14 @@ public class PoemaConcreto implements Iterable<String> {
       "no meio do caminho tinha uma pedra."
   };
 
+  public static void main(String[] args) {
+    var poema = new PoemaConcreto();
+
+    for (var verso : poema) {
+      System.out.println(verso);
+    }
+  }
+
   @Override
   public Iterator<String> iterator() {
     return this.new IteratorImpl();
