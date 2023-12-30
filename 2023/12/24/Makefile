@@ -24,10 +24,9 @@ clean:
 MAIN = main
 
 ## all of our source files
-#SOURCES  = $(MAIN)/objectos/library/Hello.java
-#SOURCES += $(MAIN)/objectos/library/Hi.java
-#SOURCES += $(MAIN)/objectos/library/Say.java
-SOURCES += $(wildcard $(MAIN)/**/**/*.java)
+SOURCES  = $(MAIN)/objectos/library/Hello.java
+SOURCES += $(MAIN)/objectos/library/Hi.java
+SOURCES += $(MAIN)/objectos/library/Say.java
 
 ## directory for the (main) compiled class files
 CLASS_OUTPUT = $(WORK)/main
@@ -43,7 +42,6 @@ JAVACX += --source-path $(MAIN)
 JAVACX += $^
 
 $(COMPILE_MARKER): $(SOURCES)
-	rm -rf $(CLASS_OUTPUT)
 	$(JAVACX)
 	@touch $@
 
