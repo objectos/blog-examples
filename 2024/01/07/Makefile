@@ -117,7 +117,7 @@ JAVACX += $(SOURCES)
 
 $(COMPILE_CLASS_PATH): $(COMPILE_DEPS) | $(WORK)
 ifneq ($(COMPILE_DEPS),)
-	cat $^ | sort | uniq | paste --delimiter='$(CLASS_PATH_SEPARATOR)' --serial > $@
+	cat $^ | sort -u | paste --delimiter='$(CLASS_PATH_SEPARATOR)' --serial > $@
 else
 	touch $@
 endif
@@ -145,4 +145,3 @@ jar: $(JAR_FILE)
 
 $(JAR_FILE): $(COMPILE_MARKER)
 	$(JARX)
-
