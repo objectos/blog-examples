@@ -109,7 +109,7 @@ RESOLVER_DEPS_JARS = $(call gavs-to-local,$(RESOLVER_DEPS))
 RESOLVER_CLASS_PATH = $(call class-path,$(RESOLVER_DEPS_JARS))
 
 ## Where to find our Resolver.java source 
-RESOLVER_URL = https://raw.githubusercontent.com/objectos/objectos.mk/dc1fe56179c9ff912a9c7bb5c5b329b99be1a770/resolver/src/main/java/Resolver.java
+RESOLVER_URL = https://raw.githubusercontent.com/objectos/objectos.mk/3ff20b750265bb1bbfd08c86e2418e7300d232d8/resolver/src/main/java/Resolver.java
 
 ## Resolver.java path
 RESOLVER_JAVA = Resolver.java
