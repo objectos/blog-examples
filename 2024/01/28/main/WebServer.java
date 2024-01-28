@@ -15,18 +15,30 @@
  */
 package objectos;
 
-public class Example01 {
-  public static void main(String[] args) {
-    Logger.log("BEGIN");
-    
-    Runnable task;
-    task = new Multiples01();
+import java.util.concurrent.BlockingQueue;
 
-    Thread thread;
-    thread = Thread.ofPlatform().name("MULT1").start(task);
-    
-    thread.interrupt();
-    
-    Logger.log("END");
+public class WebServer implements Runnable {
+  
+  private final BlockingQueue<String> queue;
+
+  WebServer(BlockingQueue<String> queue) {
+    this.queue = queue;
   }
+  
+  @Override
+  public final void run() {
+    while (true) {
+      try {
+        String msg;
+        msg = queue.take();
+        
+        Logger.log(msg);
+      } catch (InterruptedException e) {
+        Logger.log("Got interrupted!");
+        
+        break;
+      }
+    }
+  }
+  
 }

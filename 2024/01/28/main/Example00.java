@@ -15,16 +15,20 @@
  */
 package objectos;
 
-public final class Print {
-  private Print() {}
-
-  public static void msg(String value) {
+public class Example00 {
+  public static void main(String[] args) {
+    log("BEGIN");
+    
+    log("END");
+  }
+  
+  private static void log(String msg) {
     Thread currentThread;
     currentThread = Thread.currentThread();
 
     String name;
     name = currentThread.getName();
 
-    System.out.format("%6s: %s%n", name, value);
+    System.out.format("%6s: %s%n", name, msg);
   }
 }

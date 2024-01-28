@@ -15,18 +15,39 @@
  */
 package objectos;
 
-public class Example01 {
-  public static void main(String[] args) {
-    Logger.log("BEGIN");
-    
-    Runnable task;
-    task = new Multiples01();
+import java.util.Random;
 
-    Thread thread;
-    thread = Thread.ofPlatform().name("MULT1").start(task);
-    
-    thread.interrupt();
-    
-    Logger.log("END");
+public class Multiples02 implements Runnable {
+  
+  public volatile int count;
+  
+  private final Random random = new Random();
+  
+  @Override
+  public final void run() {
+    while (true) {
+      int next;
+      next = random.nextInt();
+      
+      if (next <= 0) {
+        continue;
+      }
+      
+      if ((next % 111_222_333) != 0) {
+        continue;
+      }
+     
+      String found;
+      found = Integer.toString(next);
+        
+      Logger.log(found);
+
+      count++;
+      
+      if (Thread.interrupted()) {
+        break;
+      }
+    }
   }
+  
 }

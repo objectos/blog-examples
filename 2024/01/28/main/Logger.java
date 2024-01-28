@@ -15,18 +15,16 @@
  */
 package objectos;
 
-public class Example01 {
-  public static void main(String[] args) {
-    Logger.log("BEGIN");
-    
-    Runnable task;
-    task = new Multiples01();
+public final class Logger {
+  private Logger() {}
 
-    Thread thread;
-    thread = Thread.ofPlatform().name("MULT1").start(task);
-    
-    thread.interrupt();
-    
-    Logger.log("END");
+  public static void log(String msg) {
+    Thread currentThread;
+    currentThread = Thread.currentThread();
+
+    String name;
+    name = currentThread.getName();
+
+    System.out.format("%6s: %s%n", name, msg);
   }
 }

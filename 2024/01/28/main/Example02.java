@@ -15,36 +15,22 @@
  */
 package objectos;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Example02 {
   public static void main(String[] args) {
-    Print.msg("BEGIN");
+    Logger.log("BEGIN");
     
-    var task = new PrintMultiples();
+    Multiples02 task;
+    task = new Multiples02();
+
+    Thread thread;
+    thread = Thread.ofPlatform().name("MULT2").start(task);
     
-    var thread = Thread.ofPlatform().name("MULT1").start(task);
+    while (task.count < 5) {
+      Thread.onSpinWait();
+    }
     
     thread.interrupt();
     
-    Print.msg("END");
-  }
-  
-  private static class PrintMultiples implements Runnable {
-    private static final int VALUE = 111_222_333;
-    @Override
-    public void run() {
-      var random = ThreadLocalRandom.current();
-      
-      while (true) {
-        int next = random.nextInt();
-        
-        if (next > 0 && (next % VALUE) == 0) {
-          var s = Integer.toString(next);
-          
-          Print.msg(s);
-        }
-      }
-    }
+    Logger.log("END");
   }
 }

@@ -15,17 +15,21 @@
  */
 package objectos;
 
-public class Example01 {
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class Example03 {
   public static void main(String[] args) {
     Logger.log("BEGIN");
-    
-    Runnable task;
-    task = new Multiples01();
 
-    Thread thread;
-    thread = Thread.ofPlatform().name("MULT1").start(task);
+    BlockingQueue queue;
+    queue = new LinkedBlockingQueue();
     
-    thread.interrupt();
+    try {
+      queue.take();      
+    } catch (InterruptedException e) {
+      Logger.log("Interrupted!");
+    }
     
     Logger.log("END");
   }
